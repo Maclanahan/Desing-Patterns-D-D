@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import Character.PlayerCharacter;
 
-public class CharacterHolder 
+public abstract class CharacterHolder 
 {
 	private CommandHolder _commands;
 	private Rectangle _sprite;

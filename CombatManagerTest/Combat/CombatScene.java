@@ -47,28 +47,28 @@ public class CombatScene
 		if(_heros.size() > 0)
 		{
 			TurnStep turn = new TurnStep();
-			_characters.add(new CharacterHolder(_heros.get(0), turn, 160, 15));
+			_characters.add(new HeroHolder(_heros.get(0), turn, 160, 15));
 			_turn.add(turn);
 		}
 		
 		if(_heros.size() > 1)
 		{
 			TurnStep turn = new TurnStep();
-			_characters.add(new CharacterHolder(_heros.get(1), turn, 40, 90));
+			_characters.add(new HeroHolder(_heros.get(1), turn, 40, 90));
 			_turn.add(turn);
 		}
 		
 		if(_heros.size() > 2)
 		{
 			TurnStep turn = new TurnStep();
-			_characters.add(new CharacterHolder(_heros.get(2), turn,  40, 240));
+			_characters.add(new HeroHolder(_heros.get(2), turn,  40, 240));
 			_turn.add(turn);
 		}
 		
 		if(_heros.size() > 3)
 		{
 			TurnStep turn = new TurnStep();
-			_characters.add(new CharacterHolder(_heros.get(3), turn, 160, 330));
+			_characters.add(new HeroHolder(_heros.get(3), turn, 160, 330));
 			_turn.add(turn);
 		}
 		
