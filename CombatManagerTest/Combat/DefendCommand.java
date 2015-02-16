@@ -41,8 +41,9 @@ public class DefendCommand implements Command
 	}
 
 	@Override
-	public void execute() {
-		// TODO Auto-generated method stub
+	public void execute() 
+	{
+		_turn.setDefend();
 		
 	}
 

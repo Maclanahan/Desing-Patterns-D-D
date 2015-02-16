@@ -43,7 +43,7 @@ public class SpecialCommand implements Command
 	@Override
 	public void execute() 
 	{
-		System.out.println("I executed something!");
+		_turn.setSpecial();
 		
 	}
 
