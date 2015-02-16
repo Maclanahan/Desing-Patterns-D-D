@@ -23,15 +23,10 @@ public class AttackCommand implements Command
 	
 	private void setUpEventListeners() 
 	{
-		_button.setOnMousePressed(new EventHandler<MouseEvent>()
-		{
-			public void handle(MouseEvent me)
-			{
-				System.out.println("Mouse Pressed");
-				execute();
-			}
-		});
+		setToSelectable();
 		
+		//_button.removeEventFilter(MouseEvent.MOUSE_CLICKED, handle);
+		//_button.setOnMousePressed(null);
 	}
 	
 	private void setUpButton(Point $basePosition) 
@@ -49,7 +44,7 @@ public class AttackCommand implements Command
 	@Override
 	public void execute() 
 	{
-		// TODO Auto-generated method stub
+		_turn.setAttack();
 		
 	}
 
@@ -64,6 +59,27 @@ public class AttackCommand implements Command
 	public Rectangle getButton() 
 	{
 		return _button;
+	}
+
+	@Override
+	public void setToUnselectable() 
+	{
+		_button.setOnMousePressed(null);
+		
+	}
+
+	@Override
+	public void setToSelectable() 
+	{
+		_button.setOnMousePressed(new EventHandler<MouseEvent>()
+		{
+			public void handle(MouseEvent me)
+			{
+				System.out.println("Mouse Pressed");
+				execute();
+			}
+		});
+		
 	}
 
 }

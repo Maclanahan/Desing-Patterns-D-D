@@ -28,4 +28,18 @@ public class CommandHolder
 		return g;
 		
 	}
+
+	public void setToUnselectable() 
+	{
+		atk.setToUnselectable();
+		def.setToUnselectable();
+		spcl.setToUnselectable();
+	}
+	
+	public void setToSelectable()
+	{
+		atk.setToSelectable();
+		def.setToSelectable();
+		spcl.setToSelectable();
+	}
 }

@@ -9,4 +9,8 @@ public interface Command
 	public void setCommand();
 	
 	public Rectangle getButton();
+	
+	public void setToUnselectable();
+	
+	public void setToSelectable();
 }

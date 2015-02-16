@@ -24,4 +24,19 @@ public class PlayerCharacter
 		_stats = new Stats();
 		
 	}
+
+	public Action getAttack() 
+	{
+		return _atk;
+	}
+	
+	public Action getDefend() 
+	{
+		return _dfn;
+	}
+	
+	public Action getSpecial() 
+	{
+		return _Spcl;
+	}
 }

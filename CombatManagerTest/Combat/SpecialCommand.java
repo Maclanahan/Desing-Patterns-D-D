@@ -24,14 +24,7 @@ public class SpecialCommand implements Command
 	
 	private void setUpEventListeners() 
 	{
-		_button.setOnMousePressed(new EventHandler<MouseEvent>()
-		{
-			public void handle(MouseEvent me)
-			{
-				System.out.println("Mouse Pressed");
-				execute();
-			}
-		});
+		setToSelectable();
 		
 	}
 
@@ -64,6 +57,27 @@ public class SpecialCommand implements Command
 	@Override
 	public Rectangle getButton() {
 		return _button;
+	}
+
+	@Override
+	public void setToUnselectable() 
+	{
+		_button.setOnMousePressed(null);
+		
+	}
+
+	@Override
+	public void setToSelectable() 
+	{
+		_button.setOnMousePressed(new EventHandler<MouseEvent>()
+		{
+			public void handle(MouseEvent me)
+			{
+				System.out.println("Mouse Pressed");
+				execute();
+			}
+		});
+		
 	}
 
 }
