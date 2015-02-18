@@ -73,7 +73,7 @@ public class DefendCommand implements Command
 		{
 			public void handle(MouseEvent me)
 			{
-				System.out.println("Mouse Pressed");
+				//System.out.println("Mouse Pressed");
 				execute();
 			}
 		});

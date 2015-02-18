@@ -4,15 +4,19 @@ public class Defend implements Action
 {
 
 	@Override
-	public void action() {
-		// TODO Auto-generated method stub
+	public void execute(PlayerCharacter $hero, PlayerCharacter $target) 
+	{
+		//if($target != null)
+		System.out.println($hero._name + " defends");
 		
 	}
 
 	@Override
-	public void execute(PlayerCharacter _hero, PlayerCharacter _target) {
+	public void defend(PlayerCharacter $hero, PlayerCharacter $target) 
+	{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

@@ -19,8 +19,7 @@ public class CombatScene
 	private ArrayList<PlayerCharacter> _enemies;
 	private ArrayList<CharacterHolder> _characters = new ArrayList<>();
 	private Selector select;
-	
-	private Rectangle button;
+	private TurnManager _turnManager;
 	
 	public CombatScene(ArrayList<PlayerCharacter> $heros, ArrayList<PlayerCharacter> $enemies)
 	{
@@ -33,33 +32,11 @@ public class CombatScene
 		select = new Selector(_characters);
 		
 		setUpCharacters();
-		
-		setUpTurnButton();
-		
-		
+//this is gross
+		_turnManager = new TurnManager(_turn);
+		select.setTurnManager(_turnManager);
 	}
 	
-	private void setUpTurnButton() 
-	{
-		button = new Rectangle(100, 50, Color.RED);
-		button.xProperty().set(320 - 50);
-		button.yProperty().set(240 - 25);
-		
-		button.arcHeightProperty().set(5);
-		button.arcWidthProperty().set(5);
-		button.strokeProperty().set(Color.BLACK);
-		button.strokeWidthProperty().set(2);
-		
-		button.setOnMousePressed(new EventHandler<MouseEvent>()
-		{
-			public void handle(MouseEvent me)
-			{
-				System.out.println("Turn Button Pressed");
-				
-			}
-		});
-	}
-
 	private void addObjectsToScene() 
 	{
 		Group g = new Group();
@@ -69,7 +46,8 @@ public class CombatScene
 			g.getChildren().add(ch.getObjects());
 		}
 		
-		g.getChildren().add(button);
+		//g.getChildren().add(button);
+		g.getChildren().add(_turnManager.getObjects());
 		
 		root.getChildren().add(g);
 	}
@@ -78,56 +56,56 @@ public class CombatScene
 	{
 		if(_heros.size() > 0)
 		{
-			TurnStep turn = new TurnStep(select);
+			TurnStep turn = new TurnStep(select, _heros.get(0));
 			_characters.add(new HeroHolder(_heros.get(0), turn, select, 160, 15));
 			_turn.add(turn);
 		}
 		
 		if(_heros.size() > 1)
 		{
-			TurnStep turn = new TurnStep(select);
+			TurnStep turn = new TurnStep(select, _heros.get(1));
 			_characters.add(new HeroHolder(_heros.get(1), turn, select, 40, 90));
 			_turn.add(turn);
 		}
 		
 		if(_heros.size() > 2)
 		{
-			TurnStep turn = new TurnStep(select);
+			TurnStep turn = new TurnStep(select, _heros.get(2));
 			_characters.add(new HeroHolder(_heros.get(2), turn, select, 40, 240));
 			_turn.add(turn);
 		}
 		
 		if(_heros.size() > 3)
 		{
-			TurnStep turn = new TurnStep(select);
+			TurnStep turn = new TurnStep(select, _heros.get(3));
 			_characters.add(new HeroHolder(_heros.get(3), turn, select, 160, 330));
 			_turn.add(turn);
 		}
 		
 		if(_enemies.size() > 0)
 		{
-			TurnStep turn = new TurnStep(select);
+			TurnStep turn = new TurnStep(select,_enemies.get(0));
 			_characters.add(new EnemyHolder(_enemies.get(0), turn, select, 400, 15));
 			_turn.add(turn);
 		}
 		
 		if(_enemies.size() > 1)
 		{
-			TurnStep turn = new TurnStep(select);
+			TurnStep turn = new TurnStep(select, _enemies.get(1));
 			_characters.add(new EnemyHolder(_enemies.get(1), turn, select, 520, 90));
 			_turn.add(turn);
 		}
 		
 		if(_enemies.size() > 2)
 		{
-			TurnStep turn = new TurnStep(select);
+			TurnStep turn = new TurnStep(select, _enemies.get(2));
 			_characters.add(new EnemyHolder(_enemies.get(2), turn, select,  520, 240));
 			_turn.add(turn);
 		}
 		
 		if(_enemies.size() > 3)
 		{
-			TurnStep turn = new TurnStep(select);
+			TurnStep turn = new TurnStep(select, _enemies.get(3));
 			_characters.add(new EnemyHolder(_enemies.get(3), turn, select, 400, 330));
 			_turn.add(turn);
 		}

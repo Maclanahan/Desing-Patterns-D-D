@@ -10,11 +10,20 @@ public class Selector
 	
 	private ArrayList<CharacterHolder> _characters = new ArrayList<>();
 	
+	private TurnManager _turnManager;
+	
 	private TurnStep _currentStep;
 	
 	public Selector(ArrayList<CharacterHolder> $char)
 	{
 		_characters = $char;
+		
+		//_turnManager = $turnManager;
+	}
+	
+	public void setTurnManager(TurnManager $turnManager)
+	{
+		_turnManager = $turnManager;
 	}
 
 	public void beginChoose(TurnStep $step) 
@@ -30,8 +39,9 @@ public class Selector
 		{
 			ch.setButtonsToUnSelectable();
 			ch.setIconToSelectable();
-			
 		}
+		
+		_turnManager.setTurnButtonUnSelectable();
 		
 	}
 
@@ -45,5 +55,6 @@ public class Selector
 			ch.setIconToUnselectable();
 		}
 		
+		_turnManager.setTurnButtonSelectable();
 	}
 }

@@ -2,16 +2,17 @@ package Character;
 
 public class Special implements Action
 {
-
 	@Override
-	public void action() 
+	public void execute(PlayerCharacter $hero, PlayerCharacter $target) 
 	{
-		// TODO Auto-generated method stub
+		if($target != null)
+		System.out.println($hero._name + " does a special thing to " + $target._name);
 		
 	}
 
 	@Override
-	public void execute(PlayerCharacter _hero, PlayerCharacter _target) {
+	public void defend(PlayerCharacter $hero, PlayerCharacter $target) 
+	{
 		// TODO Auto-generated method stub
 		
 	}

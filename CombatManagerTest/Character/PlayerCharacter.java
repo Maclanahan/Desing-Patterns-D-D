@@ -9,13 +9,13 @@ public class PlayerCharacter
 	public String _name;
 	protected Stats _stats;
 	protected CharacterInventory _items;
-	protected Attack _atk;
-	protected Defend _dfn;
-	protected Special _Spcl;
+	protected Action _actionState;
+	
 	
 	public PlayerCharacter(String $name)
 	{
 		_name = $name;
+		_actionState = new NoAction();
 		setStats();
 	}
 
@@ -24,19 +24,30 @@ public class PlayerCharacter
 		_stats = new Stats();
 		
 	}
+	
+	public void execute(PlayerCharacter $target)
+	{
+		_actionState.execute(this, $target);
+	}
+	
+	public void setActionToAttack()
+	{
+		_actionState = new Attack();
+	}
+	
+	public void setActionToDefend()
+	{
+		_actionState = new Defend();
+	}
+	
+	public void setActionToSpecial()
+	{
+		_actionState = new Special();
+	}
+	
+	public void setActionToNoAction()
+	{
+		_actionState = new NoAction();
+	}
 
-	public Action getAttack() 
-	{
-		return _atk;
-	}
-	
-	public Action getDefend() 
-	{
-		return _dfn;
-	}
-	
-	public Action getSpecial() 
-	{
-		return _Spcl;
-	}
 }

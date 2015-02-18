@@ -72,7 +72,7 @@ public class EnemyHolder implements CharacterHolder
 		{
 			public void handle(MouseEvent me)
 			{
-				System.out.println("Sprite Pressed");
+				//System.out.println("Sprite Pressed");
 				
 				_select.setTarget(_monster);
 			}

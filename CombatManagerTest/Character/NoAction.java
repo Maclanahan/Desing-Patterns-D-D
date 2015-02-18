@@ -1,13 +1,12 @@
 package Character;
 
-public class Attack implements Action
+public class NoAction implements Action
 {
 
 	@Override
 	public void execute(PlayerCharacter $hero, PlayerCharacter $target) 
 	{
-		if($target != null)
-		System.out.println($hero._name + " attacks " + $target._name);
+		
 		
 	}
 
@@ -18,5 +17,5 @@ public class Attack implements Action
 		
 	}
 
-	
+
 }
