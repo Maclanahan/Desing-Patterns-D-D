@@ -13,7 +13,7 @@ public class EnemyHolder implements CharacterHolder
 {
 	private PlayerCharacter _monster;
 	private Rectangle _sprite;
-	private Rectangle _healthbar;
+	private Healthbar _healthbar;
 	private Point basePosition;
 	private Point baseSize;
 	private Selector _select;
@@ -26,8 +26,9 @@ public class EnemyHolder implements CharacterHolder
 		basePosition = new Point($x_position, $y_position);
 		baseSize = new Point(90, 135);
 		
+		_healthbar = new Healthbar(basePosition, _monster.getTotalHitPoints());
+		
 		_sprite = accessorizeRectangle(90, 90, Color.DODGERBLUE);
-		_healthbar = accessorizeRectangle(90, 10, Color.GREEN);
 		
 		placeObjects();
 	}
@@ -47,19 +48,15 @@ public class EnemyHolder implements CharacterHolder
 
 	private void placeObjects() 
 	{
-		_healthbar.xProperty().set(basePosition.x);
-		_healthbar.yProperty().set(basePosition.y + 25);
-		
 		_sprite.xProperty().set(basePosition.x);
 		_sprite.yProperty().set(basePosition.y + baseSize.y - _sprite.heightProperty().intValue() );
-		
 	}
 
 	@Override
 	public Group getObjects() 
 	{
 		Group g = new Group();
-		g.getChildren().add(_healthbar);
+		g.getChildren().add(_healthbar.getObjects());
 		g.getChildren().add(_sprite);
 		
 		return g;
@@ -94,6 +91,10 @@ public class EnemyHolder implements CharacterHolder
 	@Override
 	public void setButtonsToSelectable() {	}
 
-	
+	@Override
+	public void update()
+	{
+		_healthbar.updateHealth(_monster.getCurrentHealth());
+	}
 	
 }

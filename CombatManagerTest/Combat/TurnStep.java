@@ -60,4 +60,9 @@ public class TurnStep
 		_hero.setActionToSpecial();
 		_select.beginChoose(this);
 	}
+
+	public void update() 
+	{
+		
+	}
 }

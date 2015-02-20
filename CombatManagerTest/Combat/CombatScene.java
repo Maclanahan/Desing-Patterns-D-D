@@ -33,7 +33,7 @@ public class CombatScene
 		
 		setUpCharacters();
 //this is gross
-		_turnManager = new TurnManager(_turn);
+		_turnManager = new TurnManager(_turn, _characters);
 		select.setTurnManager(_turnManager);
 	}
 	

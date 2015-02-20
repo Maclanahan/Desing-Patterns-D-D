@@ -18,4 +18,6 @@ public interface CharacterHolder
 	public void setButtonsToUnSelectable();
 	
 	public void setButtonsToSelectable();
+	
+	public void update();
 }

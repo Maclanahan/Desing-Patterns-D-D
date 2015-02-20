@@ -11,11 +11,13 @@ import javafx.scene.shape.Rectangle;
 public class TurnManager 
 {
 	private ArrayList<TurnStep> _turns;
+	private ArrayList<CharacterHolder> _chars;
 	private Rectangle button;
 	
-	public TurnManager(ArrayList<TurnStep> $turns)
+	public TurnManager(ArrayList<TurnStep> $turns, ArrayList<CharacterHolder> $chars)
 	{
 		_turns = $turns;
+		_chars = $chars;
 		
 		setUpTurnButton();
 	}
@@ -53,6 +55,11 @@ public class TurnManager
 		{
 			ts.execute();
 			ts.reset();
+		}
+		
+		for(CharacterHolder ch : _chars)
+		{
+			ch.update();
 		}
 		
 	}

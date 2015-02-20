@@ -4,5 +4,7 @@ public interface Action
 {
 	public void execute(PlayerCharacter $hero, PlayerCharacter $target);
 	
-	public void defend(PlayerCharacter $hero, PlayerCharacter $attacker);
+	public int attacked(PlayerCharacter $hero);
+	
+	public int specialed(PlayerCharacter $hero);
 }

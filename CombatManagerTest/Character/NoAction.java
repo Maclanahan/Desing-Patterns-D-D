@@ -11,11 +11,14 @@ public class NoAction implements Action
 	}
 
 	@Override
-	public void defend(PlayerCharacter $hero, PlayerCharacter $target) 
+	public int attacked(PlayerCharacter $hero) 
 	{
-		System.out.println($target._name + " does a normal amount of damage to " + $hero._name);
-		
+		return $hero._stats.getDefense();
 	}
 
-
+	@Override
+	public int specialed(PlayerCharacter $hero) 
+	{
+		return $hero._stats.getDefense();
+	}
 }

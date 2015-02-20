@@ -13,7 +13,7 @@ public class HeroHolder implements CharacterHolder
 {
 	private CommandHolder _commands;
 	private Rectangle _sprite;
-	private Rectangle _healthbar;
+	private Healthbar _healthbar;
 	private PlayerCharacter _hero;
 	private Point basePosition;
 	private Point baseSize;
@@ -28,8 +28,9 @@ public class HeroHolder implements CharacterHolder
 		
 		_commands = new CommandHolder(_hero, $turn, basePosition);
 		
+		_healthbar = new Healthbar(basePosition, _hero.getTotalHitPoints());
+		
 		_sprite = accessorizeRectangle(90, 90, Color.DODGERBLUE);
-		_healthbar = accessorizeRectangle(90, 10, Color.GREEN);
 		
 		placeObjects();
 	}
@@ -49,8 +50,8 @@ public class HeroHolder implements CharacterHolder
 
 	private void placeObjects() 
 	{
-		_healthbar.xProperty().set(basePosition.x);
-		_healthbar.yProperty().set(basePosition.y);
+		//_healthbar.xProperty().set(basePosition.x);
+		//_healthbar.yProperty().set(basePosition.y);
 		
 		_sprite.xProperty().set(basePosition.x);
 		_sprite.yProperty().set(basePosition.y + baseSize.y - _sprite.heightProperty().intValue() );
@@ -60,7 +61,7 @@ public class HeroHolder implements CharacterHolder
 	public Group getObjects()
 	{
 		Group g = new Group();
-		g.getChildren().add(_healthbar);
+		g.getChildren().add(_healthbar.getObjects());
 		g.getChildren().add(_sprite);
 		g.getChildren().add(_commands.getObjects());
 		
@@ -101,5 +102,11 @@ public class HeroHolder implements CharacterHolder
 	{
 		_commands.setToSelectable();
 		
+	}
+	
+	@Override
+	public void update()
+	{
+		_healthbar.updateHealth(_hero.getCurrentHealth());
 	}
 }

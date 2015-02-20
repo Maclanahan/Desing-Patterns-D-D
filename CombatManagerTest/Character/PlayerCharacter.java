@@ -7,7 +7,7 @@ import Item.Item;
 public class PlayerCharacter 
 {
 	public String _name;
-	protected Stats _stats;
+	public Stats _stats;
 	protected CharacterInventory _items;
 	protected Action _actionState;
 	
@@ -30,6 +30,16 @@ public class PlayerCharacter
 		_actionState.execute(this, $target);
 	}
 	
+	public int attacked()
+	{
+		return _actionState.attacked(this);
+	}
+	
+	public int specialed()
+	{
+		return _actionState.specialed(this);
+	}
+	
 	public void setActionToAttack()
 	{
 		_actionState = new Attack();
@@ -50,4 +60,18 @@ public class PlayerCharacter
 		_actionState = new NoAction();
 	}
 
+	public void takeDamage(int $damage) 
+	{
+		_stats.takeDamage($damage);
+	}
+
+	public int getTotalHitPoints()
+	{
+		return _stats.getHitPoints();
+	}
+
+	public int getCurrentHealth() 
+	{
+		return _stats.CurrentHitPoints;
+	}
 }
