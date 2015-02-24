@@ -28,12 +28,14 @@ public class Attack implements Action
 	@Override
 	public int attacked(PlayerCharacter $hero) 
 	{
+		//System.out.println("In Action");
 		return $hero._stats.getDefense();
 	}
 
 	@Override
 	public int specialed(PlayerCharacter $hero) 
 	{
+		//System.out.println("In Action");
 		return $hero._stats.getDefense();
 	}
 

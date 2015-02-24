@@ -18,6 +18,7 @@ public class HeroHolder implements CharacterHolder
 	private Point basePosition;
 	private Point baseSize;
 	private Selector _select;
+	private boolean _isDead = false;
 	
 	public HeroHolder(PlayerCharacter $hero, TurnStep $turn, Selector $select, int $x_position, int $y_position)
 	{
@@ -108,5 +109,26 @@ public class HeroHolder implements CharacterHolder
 	public void update()
 	{
 		_healthbar.updateHealth(_hero.getCurrentHealth());
+		
+		if(_hero.getCurrentHealth() == 0)
+		{
+			makeDead();
+		}
+	}
+	
+	private void makeDead() 
+	{
+		_isDead = true;
+		
+		setIconToUnselectable();
+		
+		_commands.setToDead();
+		
+		recolorRectangle(_sprite, Color.GREY);
+	}
+
+	private void recolorRectangle(Rectangle $sprite, Color $color) 
+	{
+		$sprite.fillProperty().set($color);
 	}
 }

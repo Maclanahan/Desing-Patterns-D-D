@@ -17,6 +17,7 @@ public class EnemyHolder implements CharacterHolder
 	private Point basePosition;
 	private Point baseSize;
 	private Selector _select;
+	private boolean _isDead = false;
 	
 	public EnemyHolder(PlayerCharacter $enemy, TurnStep $turn, Selector $select, int $x_position,
 			int $y_position) 
@@ -65,22 +66,22 @@ public class EnemyHolder implements CharacterHolder
 	@Override
 	public void setIconToSelectable() 
 	{
-		_sprite.setOnMousePressed(new EventHandler<MouseEvent>()
-		{
-			public void handle(MouseEvent me)
+		if(!_isDead)
+			_sprite.setOnMousePressed(new EventHandler<MouseEvent>()
 			{
-				//System.out.println("Sprite Pressed");
-				
-				_select.setTarget(_monster);
-			}
-		});
+				public void handle(MouseEvent me)
+				{
+					//System.out.println("Sprite Pressed");
+					
+					_select.setTarget(_monster);
+				}
+			});
 	}
 	
 	@Override
 	public void setIconToUnselectable() 
 	{
 		_sprite.setOnMousePressed(null);
-		
 	}
 
 	@Override
@@ -95,6 +96,25 @@ public class EnemyHolder implements CharacterHolder
 	public void update()
 	{
 		_healthbar.updateHealth(_monster.getCurrentHealth());
+		
+		if(_monster.getCurrentHealth() == 0)
+		{
+			makeDead();
+		}
+	}
+
+	private void makeDead() 
+	{
+		_isDead = true;
+		
+		setIconToUnselectable();
+		
+		recolorRectangle(_sprite, Color.GREY);
+	}
+
+	private void recolorRectangle(Rectangle $sprite, Color $color) 
+	{
+		$sprite.fillProperty().set($color);
 	}
 	
 }

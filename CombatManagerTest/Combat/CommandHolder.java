@@ -11,6 +11,8 @@ public class CommandHolder
 	private DefendCommand def;
 	private SpecialCommand spcl;
 	
+	private boolean _isDead = false;
+	
 	public CommandHolder(PlayerCharacter _$hero, TurnStep $turn, Point $basePosition)
 	{
 		atk = new AttackCommand(_$hero, $turn, $basePosition);
@@ -41,5 +43,12 @@ public class CommandHolder
 		atk.setToSelectable();
 		def.setToSelectable();
 		spcl.setToSelectable();
+	}
+
+	public void setToDead() 
+	{
+		atk.setToDead();
+		def.setToDead();
+		spcl.setToDead();
 	}
 }

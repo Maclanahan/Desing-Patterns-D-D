@@ -1,6 +1,8 @@
 package Combat;
 
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import Character.PlayerCharacter;
 import javafx.event.EventHandler;
@@ -10,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class CombatScene 
+public class CombatScene implements Observer
 {
 	private Scene scene;
 	private Group root;
@@ -33,8 +35,12 @@ public class CombatScene
 		
 		setUpCharacters();
 //this is gross
-		_turnManager = new TurnManager(_turn, _characters);
+		
+		_turnManager = new TurnManager(_turn, _characters, _heros, _enemies);
+		_turnManager.addObserver(this);
 		select.setTurnManager(_turnManager);
+		
+		_turnManager.addObserver(this);
 	}
 	
 	private void addObjectsToScene() 
@@ -46,7 +52,6 @@ public class CombatScene
 			g.getChildren().add(ch.getObjects());
 		}
 		
-		//g.getChildren().add(button);
 		g.getChildren().add(_turnManager.getObjects());
 		
 		root.getChildren().add(g);
@@ -111,6 +116,25 @@ public class CombatScene
 		}
 		
 	}
+	
+	private boolean isCombatOver(ArrayList<PlayerCharacter> _group) 
+	{
+		int numDead = 0;
+		
+		for(PlayerCharacter pc : _group)
+		{
+			if(pc.getCurrentHealth() == 0)
+				numDead++;
+		}
+		
+		//System.out.println("Dead: " + numDead + " Size: " + _group.size());
+		if(numDead == _group.size())
+			return true;
+		
+		else
+			return false;
+		
+	}
 
 	public Scene getScene()
 	{
@@ -121,5 +145,17 @@ public class CombatScene
 	{
 		//root.getChildren().add();
 		addObjectsToScene();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) 
+	{
+//System.out.println("In Update");
+		if(isCombatOver(_heros))
+			System.out.println("YOU LOSE");//lose state
+	
+		if(isCombatOver(_enemies))
+			System.out.println("YOU WIN!");//win state
+		
 	}
 }

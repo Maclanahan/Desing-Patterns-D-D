@@ -13,4 +13,6 @@ public interface Command
 	public void setToUnselectable();
 	
 	public void setToSelectable();
+	
+	public void setToDead();
 }

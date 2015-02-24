@@ -1,23 +1,30 @@
 package Combat;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
+import Character.PlayerCharacter;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class TurnManager 
+public class TurnManager extends Observable
 {
 	private ArrayList<TurnStep> _turns;
 	private ArrayList<CharacterHolder> _chars;
+	private ArrayList<PlayerCharacter> _heros;
+	private ArrayList<PlayerCharacter> _enemies;
 	private Rectangle button;
 	
-	public TurnManager(ArrayList<TurnStep> $turns, ArrayList<CharacterHolder> $chars)
+	public TurnManager(ArrayList<TurnStep> $turns, ArrayList<CharacterHolder> $chars, ArrayList<PlayerCharacter> $heros, 
+			ArrayList<PlayerCharacter>$enemies) 
 	{
 		_turns = $turns;
 		_chars = $chars;
+		_heros = $heros;
+		_enemies = $enemies;
 		
 		setUpTurnButton();
 	}
@@ -53,8 +60,12 @@ public class TurnManager
 	{
 		for(TurnStep ts : _turns)
 		{
-			ts.execute();
-			ts.reset();
+			ts.execute();	
+		}
+		
+		for(TurnStep ts : _turns)
+		{
+			ts.reset();	
 		}
 		
 		for(CharacterHolder ch : _chars)
@@ -62,8 +73,13 @@ public class TurnManager
 			ch.update();
 		}
 		
+		this.setChanged();
+		this.notifyObservers("words");
+		
 	}
 	
+	
+
 	public void setTurnButtonUnSelectable()
 	{
 		button.setOnMousePressed(null);
@@ -73,6 +89,8 @@ public class TurnManager
 	{
 		return button;
 	}
+
+	
 	
 	
 }

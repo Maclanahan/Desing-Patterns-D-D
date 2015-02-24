@@ -29,12 +29,14 @@ public class Special implements Action
 	@Override
 	public int attacked(PlayerCharacter $hero) 
 	{
+		//System.out.println("In Special");
 		return $hero._stats.getDefense() / 2;
 	}
 
 	@Override
 	public int specialed(PlayerCharacter $hero) 
 	{
+		//System.out.println("In Special");
 		return $hero._stats.getDefense();
 	}
 

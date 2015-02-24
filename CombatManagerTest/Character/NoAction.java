@@ -13,12 +13,16 @@ public class NoAction implements Action
 	@Override
 	public int attacked(PlayerCharacter $hero) 
 	{
-		return $hero._stats.getDefense();
+		//System.out.println("In No Action");
+		//return $hero._stats.getDefense();
+		return 0;
 	}
 
 	@Override
 	public int specialed(PlayerCharacter $hero) 
 	{
-		return $hero._stats.getDefense();
+		//System.out.println("In No Action");
+		//return $hero._stats.getDefense();
+		return 0;
 	}
 }

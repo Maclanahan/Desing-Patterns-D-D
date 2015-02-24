@@ -12,6 +12,7 @@ public class DefendCommand implements Command
 {
 	private Rectangle _button;
 	private TurnStep _turn;
+	private boolean _isDead = false;
 	
 	public DefendCommand(PlayerCharacter _$hero, TurnStep $turn,
 			Point $basePosition) 
@@ -69,15 +70,25 @@ public class DefendCommand implements Command
 	@Override
 	public void setToSelectable() 
 	{
-		_button.setOnMousePressed(new EventHandler<MouseEvent>()
-		{
-			public void handle(MouseEvent me)
+		if(!_isDead)
+			_button.setOnMousePressed(new EventHandler<MouseEvent>()
 			{
-				//System.out.println("Mouse Pressed");
-				execute();
-			}
-		});
+				public void handle(MouseEvent me)
+				{
+					//System.out.println("Mouse Pressed");
+					execute();
+				}
+			});
 		
+	}
+
+	@Override
+	public void setToDead() 
+	{
+		_isDead = true;
+		setToUnselectable();
+		
+		_button.fillProperty().set(Color.GRAY);
 	}
 
 }
