@@ -5,24 +5,42 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 public class Main extends Application {
+	// records relative x and y co-ordinates.
+	class Delta { double x, y; }
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	public void start(Stage primaryStage) {
 		try {
 			GridPane root = new GridPane();
+			StackPane stack = new StackPane();
+			//StackPane p = new StackPane();
+			 stack.setPrefSize(50,50);//set a default size for your stackpane
+			 Image img = new Image("file:sword.png", 50, 50, false, false);//create an image
+			 ImageView item = new ImageView(img);//create an imageView and pass the image 
+			 stack.setMinSize(0, 0);
+			 stack.setMaxSize(50,50);
+			 stack.getChildren().add(item); //add imageView to stackPane
+			 StackPane.setAlignment(item,Pos.CENTER);//set it to the Center Left(by default it's  on the 
+			root.add(stack,1,1);
+			
 			root.setAlignment(Pos.BOTTOM_CENTER);
 			Scene scene = new Scene(root, 400, 400);
 			scene.getStylesheets().add(
@@ -92,9 +110,28 @@ public class Main extends Application {
 			root.add(slots_C[i], 2, i);
 			root.add(slots_D[i], 3, i);
 			}
+			
 			// root.getChildren().add(canvas);
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			StackPane stack2 = new StackPane();
+			//StackPane p = new StackPane();
+			 stack2.setPrefSize(50,50);//set a default size for your stackpane
+			 Image img2 = new Image("file:sword.png", 50, 50, false, false);//create an image
+			 ImageView item2 = new ImageView(img2);//create an imageView and pass the image 
+			 stack2.setMinSize(0, 0);
+			 stack2.setMaxSize(50,50);
+			 stack2.getChildren().add(item2); //add imageView to stackPane
+			 StackPane.setAlignment(item2,Pos.CENTER);//set it to the Center Left(by default it's  on the 
+			root.add(stack2,2,1);
+			//Thread.sleep(10000);
+			root.getChildren().remove(stack2);
+			root.add(stack2,3,1); 
+
+
+
+		
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
