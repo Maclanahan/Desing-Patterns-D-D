@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.CombatController">
+   <children>
+      <AnchorPane prefHeight="480.0" prefWidth="640.0">
+         <children>
+            <Pane id="HeroBoxTop" layoutX="161.0" layoutY="14.0" prefHeight="134.0" prefWidth="91.0">
+               <children>
+                  <Rectangle id="Hero" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="89.0" layoutX="12.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+                  <Pane id="HeroControls" prefHeight="31.0" prefWidth="91.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="2.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="33.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="65.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle id="HealthBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="11.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane id="HeroBoxMidTop" layoutX="32.0" layoutY="94.0" prefHeight="134.0" prefWidth="91.0">
+               <children>
+                  <Rectangle id="Hero" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="89.0" layoutX="12.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+                  <Pane id="HeroControls" prefHeight="31.0" prefWidth="91.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="2.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="33.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="65.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle id="HealthBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="11.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane id="HeroBoxMidBottom" layoutX="32.0" layoutY="240.0" prefHeight="134.0" prefWidth="91.0">
+               <children>
+                  <Rectangle id="Hero" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="89.0" layoutX="12.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+                  <Pane id="HeroControls" prefHeight="31.0" prefWidth="91.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="2.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="33.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="65.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle id="HealthBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="11.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane id="HeroBoxBotton" layoutX="161.0" layoutY="332.0" prefHeight="134.0" prefWidth="91.0">
+               <children>
+                  <Rectangle id="Hero" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="89.0" layoutX="12.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+                  <Pane id="HeroControls" prefHeight="31.0" prefWidth="91.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="2.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="33.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="25.0" layoutX="65.0" layoutY="14.0" stroke="BLACK" strokeType="INSIDE" width="25.0" />
+                        <Rectangle id="HealthBar" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="11.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane layoutX="383.0" layoutY="332.0" prefHeight="134.0" prefWidth="91.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="89.0" layoutX="12.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+                  <Pane prefHeight="31.0" prefWidth="91.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="11.0" layoutY="17.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane layoutX="507.0" layoutY="228.0" prefHeight="134.0" prefWidth="91.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="89.0" layoutX="12.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+                  <Pane prefHeight="31.0" prefWidth="91.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="11.0" layoutY="17.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane layoutX="507.0" layoutY="81.0" prefHeight="134.0" prefWidth="91.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="89.0" layoutX="12.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+                  <Pane prefHeight="31.0" prefWidth="91.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="11.0" layoutY="17.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Pane layoutX="383.0" layoutY="14.0" prefHeight="134.0" prefWidth="91.0">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="89.0" layoutX="12.0" layoutY="45.0" stroke="BLACK" strokeType="INSIDE" width="68.0" />
+                  <Pane prefHeight="31.0" prefWidth="91.0">
+                     <children>
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="11.0" layoutY="17.0" stroke="BLACK" strokeType="INSIDE" width="91.0" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
+            <Button layoutX="288.0" layoutY="228.0" mnemonicParsing="false" text="End Turn" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
