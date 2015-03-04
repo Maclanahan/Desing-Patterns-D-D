@@ -1,4 +1,5 @@
 package Item;
+
 //package application;
 
 import javafx.event.EventHandler;
@@ -65,7 +66,7 @@ public class BagSlot implements Slot {
 		panel.getChildren().add(item.getImage());
 		this.item = item;
 		this.empty = false;
-
+		// System.out.println("here");
 		// TODO Auto-generated method stub
 
 	}
@@ -75,8 +76,8 @@ public class BagSlot implements Slot {
 		item = hand.item;
 		empty = false;
 		hand.empty = true;
+		// System.out.println("here");
 		// TODO Auto-generated method stub
-
 	}
 
 	@Override

@@ -1,6 +1,9 @@
 package Item;
+
 //package application;
 
+import java.util.Arrays;
+import java.util.List;
 
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
@@ -16,6 +19,44 @@ public class Inventory {
 	private Hand hand;
 	// private BagSlot[] bag;
 	private Bag bag;
+	private Scene scene;
+	private Slot[] slots_A;
+	private Slot[] slots_B;
+	private Slot[] slots_C;
+	private Slot[] slots_D;
+	private GridPane root;
+
+	public List<Slot> slots_A() {
+		List<Slot> slots_list_A = Arrays.asList(slots_A);
+
+		return slots_list_A;
+	}
+
+	public List<Slot> slots_B() {
+		List<Slot> slots_list_B = Arrays.asList(slots_B);
+
+		return slots_list_B;
+	}
+
+	public List<Slot> slots_C() {
+		List<Slot> slots_list_C = Arrays.asList(slots_C);
+
+		return slots_list_C;
+	}
+
+	public List<Slot> slots_D() {
+		List<Slot> slots_list_D = Arrays.asList(slots_D);
+
+		return slots_list_D;
+	}
+
+	public Scene getScene() {
+		return scene;
+	}
+
+	public GridPane getRoot() {
+		return root;
+	}
 
 	public void initialInv() {
 		// bag = new BagSlot[16];
@@ -52,24 +93,23 @@ public class Inventory {
 		bag.putItem(testSword2);
 	}
 
-	public void start(Stage primaryStage) {
+	public void start() {
 		try {
 
 			hand = new Hand();
 			hand.empty = true;
-			GridPane root = new GridPane();
+			root = new GridPane();
 			root.setAlignment(Pos.BOTTOM_CENTER);
-			Scene scene = new Scene(root, 400, 400);
+			scene = new Scene(root, 400, 400);
 			bag = new Bag(hand, root);
 
-			primaryStage.setScene(scene);
-			primaryStage.show();
-			
+			// primaryStage.setScene(scene);
+			// primaryStage.show();
 
-			Slot[] slots_A = new Slot[3];
-			Slot[] slots_B = new Slot[3];
-			Slot[] slots_C = new Slot[3];
-			Slot[] slots_D = new Slot[3];
+			slots_A = new Slot[3];
+			slots_B = new Slot[3];
+			slots_C = new Slot[3];
+			slots_D = new Slot[3];
 
 			slots_A[0] = new ArmorSlot(hand);
 
@@ -126,6 +166,9 @@ public class Inventory {
 				(root).add(slots_D[i].getPanel(), 3, i);
 
 			}
+
+			// Sword x = new Sword();
+			// bag.putItem(x);
 			initialInv();
 			// }
 

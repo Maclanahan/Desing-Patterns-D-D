@@ -10,7 +10,7 @@ public class Necklace extends Misc {
 	private int def = 0;
 	private int speed = 0;
 	private int dmg = 0;
-	private Image image = new Image("nothing.png", 40, 40, false, false);
+	private Image image = new Image("file:nothing.png", 40, 40, false, false);
 	private ImageView imageview = new ImageView(image);
 
 

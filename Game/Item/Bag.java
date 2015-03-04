@@ -65,6 +65,7 @@ public class Bag {
 		for (int i = 0; i < items.length; i++) {
 			if (items[i].isEmpty() == true)
 			{
+				
 				items[i].putItem(item);
 				return;
 			}
