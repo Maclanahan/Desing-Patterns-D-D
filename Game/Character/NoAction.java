@@ -4,14 +4,14 @@ public class NoAction implements Action
 {
 
 	@Override
-	public void execute(PlayerCharacter $hero, PlayerCharacter $target) 
+	public void execute(GameCharacter $hero, GameCharacter $target) 
 	{
 		
 		
 	}
 
 	@Override
-	public int attacked(PlayerCharacter $hero) 
+	public int attacked(GameCharacter $hero) 
 	{
 		//System.out.println("In No Action");
 		//return $hero._stats.getDefense();
@@ -19,7 +19,7 @@ public class NoAction implements Action
 	}
 
 	@Override
-	public int specialed(PlayerCharacter $hero) 
+	public int specialed(GameCharacter $hero) 
 	{
 		//System.out.println("In No Action");
 		//return $hero._stats.getDefense();

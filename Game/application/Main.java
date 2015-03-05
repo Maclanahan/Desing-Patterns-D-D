@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+import Character.AICharacter;
+import Character.GameCharacter;
 import Character.PlayerCharacter;
 import Combat.CombatScene;
 import Item.InventoryScene;
@@ -18,8 +20,8 @@ import javafx.scene.paint.Color;
 
 public class Main extends Application implements Observer
 {
-	private ArrayList<PlayerCharacter> _characters = new ArrayList<>();
-	private ArrayList<PlayerCharacter> _enemies = new ArrayList<>();
+	private ArrayList<GameCharacter> _characters = new ArrayList<>();
+	private ArrayList<GameCharacter> _enemies = new ArrayList<>();
 	
 	private Stage _primaryStage;
 	
@@ -72,10 +74,10 @@ public class Main extends Application implements Observer
 		_characters.add(new PlayerCharacter("Edmund"));
 		_characters.add(new PlayerCharacter("Lucy"));
 		
-		_enemies.add(new PlayerCharacter("Wolf"));
-		_enemies.add(new PlayerCharacter("White Witch"));
-		_enemies.add(new PlayerCharacter("Dwarf"));
-		_enemies.add(new PlayerCharacter("Gaint"));
+		_enemies.add(new AICharacter("Wolf"));
+		_enemies.add(new AICharacter("White Witch"));
+		_enemies.add(new AICharacter("Dwarf"));
+		_enemies.add(new AICharacter("Gaint"));
 	}
 	
 	private void setUpInventory() 

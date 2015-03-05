@@ -2,9 +2,9 @@ package Character;
 
 public interface Action 
 {
-	public void execute(PlayerCharacter $hero, PlayerCharacter $target);
+	public void execute(GameCharacter $hero, GameCharacter $target);
 	
-	public int attacked(PlayerCharacter $hero);
+	public int attacked(GameCharacter $hero);
 	
-	public int specialed(PlayerCharacter $hero);
+	public int specialed(GameCharacter $hero);
 }

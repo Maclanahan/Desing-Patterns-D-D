@@ -5,6 +5,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 import application.GameScene;
+import Character.AICharacter;
+import Character.GameCharacter;
 import Character.PlayerCharacter;
 import javafx.scene.Group;
 import javafx.scene.Scene;
@@ -15,13 +17,14 @@ public class CombatScene extends Observable implements Observer, GameScene
 	private Scene scene;
 	private Group root;
 	private ArrayList<TurnStep> _turn = new ArrayList<>();
-	private ArrayList<PlayerCharacter> _heros;
-	private ArrayList<PlayerCharacter> _enemies;
+	private ArrayList<GameCharacter> _heros;
+	private ArrayList<GameCharacter> _enemies;
 	private ArrayList<CharacterHolder> _characters = new ArrayList<>();
 	private Selector select;
+	private AISelector aiSelect;
 	private TurnManager _turnManager;
 	
-	public CombatScene(ArrayList<PlayerCharacter> $heros, ArrayList<PlayerCharacter> $enemies)
+	public CombatScene(ArrayList<GameCharacter> $heros, ArrayList<GameCharacter> $enemies)
 	{
 		root = new Group();
 		scene = new Scene(root, 640, 480, Color.GRAY);
@@ -30,9 +33,10 @@ public class CombatScene extends Observable implements Observer, GameScene
 		_enemies = $enemies;
 		
 		select = new Selector(_characters);
+		aiSelect = new AISelector($heros, $enemies);
 		
 		setUpCharacters();
-//this is gross
+
 		
 		_turnManager = new TurnManager(_turn, _characters, _heros, _enemies);
 		_turnManager.addObserver(this);
@@ -87,6 +91,8 @@ public class CombatScene extends Observable implements Observer, GameScene
 		
 		if(_enemies.size() > 0)
 		{
+			((AICharacter) _enemies.get(0)).setSelector(aiSelect);
+			
 			TurnStep turn = new TurnStep(select,_enemies.get(0));
 			_characters.add(new EnemyHolder(_enemies.get(0), turn, select, 400, 15));
 			_turn.add(turn);
@@ -94,6 +100,8 @@ public class CombatScene extends Observable implements Observer, GameScene
 		
 		if(_enemies.size() > 1)
 		{
+			((AICharacter) _enemies.get(1)).setSelector(aiSelect);
+			
 			TurnStep turn = new TurnStep(select, _enemies.get(1));
 			_characters.add(new EnemyHolder(_enemies.get(1), turn, select, 520, 90));
 			_turn.add(turn);
@@ -101,6 +109,8 @@ public class CombatScene extends Observable implements Observer, GameScene
 		
 		if(_enemies.size() > 2)
 		{
+			((AICharacter) _enemies.get(2)).setSelector(aiSelect);
+			
 			TurnStep turn = new TurnStep(select, _enemies.get(2));
 			_characters.add(new EnemyHolder(_enemies.get(2), turn, select,  520, 240));
 			_turn.add(turn);
@@ -108,6 +118,8 @@ public class CombatScene extends Observable implements Observer, GameScene
 		
 		if(_enemies.size() > 3)
 		{
+			((AICharacter) _enemies.get(3)).setSelector(aiSelect);
+			
 			TurnStep turn = new TurnStep(select, _enemies.get(3));
 			_characters.add(new EnemyHolder(_enemies.get(3), turn, select, 400, 330));
 			_turn.add(turn);
@@ -115,18 +127,18 @@ public class CombatScene extends Observable implements Observer, GameScene
 		
 	}
 	
-	private boolean isCombatOver(ArrayList<PlayerCharacter> _group) 
+	private boolean isCombatOver(ArrayList<GameCharacter> _heros2) 
 	{
 		int numDead = 0;
 		
-		for(PlayerCharacter pc : _group)
+		for(GameCharacter pc : _heros2)
 		{
 			if(pc.getCurrentHealth() == 0)
 				numDead++;
 		}
 		
 		//System.out.println("Dead: " + numDead + " Size: " + _group.size());
-		if(numDead == _group.size())
+		if(numDead == _heros2.size())
 			return true;
 		
 		else
@@ -155,7 +167,7 @@ public class CombatScene extends Observable implements Observer, GameScene
 			setChanged();
 			notifyObservers("Lost");
 		}
-		if(isCombatOver(_enemies))
+		else if(isCombatOver(_enemies))
 		{
 			System.out.println("YOU WIN!");//win state
 			setChanged();

@@ -3,6 +3,7 @@ package Combat;
 import java.awt.Point;
 
 import javafx.scene.Group;
+import Character.GameCharacter;
 import Character.PlayerCharacter;
 
 public class CommandHolder 
@@ -13,7 +14,7 @@ public class CommandHolder
 	
 	private boolean _isDead = false;
 	
-	public CommandHolder(PlayerCharacter _$hero, TurnStep $turn, Point $basePosition)
+	public CommandHolder(GameCharacter _$hero, TurnStep $turn, Point $basePosition)
 	{
 		atk = new AttackCommand(_$hero, $turn, $basePosition);
 		def = new DefendCommand(_$hero, $turn, $basePosition);

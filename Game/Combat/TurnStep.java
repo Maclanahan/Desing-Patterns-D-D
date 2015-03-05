@@ -1,17 +1,18 @@
 package Combat;
 
 import Character.Action;
+import Character.GameCharacter;
 import Character.PlayerCharacter;
 
 public class TurnStep 
 {
-	private PlayerCharacter _hero;
+	private GameCharacter _hero;
 	private Action _act;
-	private PlayerCharacter _target;
+	private GameCharacter _target;
 	private Selector _select;
-	private PlayerCharacter _empty = new PlayerCharacter("nothing");
+	private GameCharacter _empty = new PlayerCharacter("nothing");
 	
-	public TurnStep(Selector $select, PlayerCharacter $hero) 
+	public TurnStep(Selector $select, GameCharacter $hero) 
 	{
 		_select = $select;
 		_hero = $hero;
@@ -23,15 +24,14 @@ public class TurnStep
 		_act = $act;
 	}
 	
-	public void setTarget(PlayerCharacter $target)
+	public void setTarget(GameCharacter _char)
 	{
-		_target = $target;
+		_target = _char;
 	}
 	
 	public void execute()
 	{
-		//if(_target != null)
-			_hero.execute(_target);
+		_hero.execute(_target);
 	}
 	
 	public void reset()

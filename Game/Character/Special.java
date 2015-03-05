@@ -7,37 +7,37 @@ public class Special implements Action
 	private Random rand = new Random();
 	private int max = 5;
 	@Override
-	public void execute(PlayerCharacter $hero, PlayerCharacter $target) 
+	public void execute(GameCharacter $hero, GameCharacter $target) 
 	{
 		if($target != null)
 		{
 			
-			int damage = $hero._stats.getStrength() - $target.attacked();
+			int damage = $hero.getStats().getStrength() - $target.attacked();
 			damage += rand.nextInt() % (max + 1);
 			
 			if(damage > 0)
 			{
 				$target.takeDamage(damage);
-				System.out.println($hero._name + " does a special attack against " + $target._name 
+				System.out.println($hero.getName() + " does a special attack against " + $target.getName() 
 						+ " and does " + damage + " points of damage.");
 			}
 			else
-				System.out.println($hero._name + " does a special attack against " + $target._name + " and misses."); 
+				System.out.println($hero.getName() + " does a special attack against " + $target.getName() + " and misses."); 
 		}
 	}
 	
 	@Override
-	public int attacked(PlayerCharacter $hero) 
+	public int attacked(GameCharacter $hero) 
 	{
 		//System.out.println("In Special");
-		return $hero._stats.getDefense() / 2;
+		return $hero.getStats().getDefense() / 2;
 	}
 
 	@Override
-	public int specialed(PlayerCharacter $hero) 
+	public int specialed(GameCharacter $hero) 
 	{
 		//System.out.println("In Special");
-		return $hero._stats.getDefense();
+		return $hero.getStats().getDefense();
 	}
 
 }

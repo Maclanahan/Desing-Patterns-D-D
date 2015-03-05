@@ -1,21 +1,23 @@
 package Character;
 
-import java.util.ArrayList;
+import Combat.AISelector;
 
-import Item.Item;
-
-public class PlayerCharacter implements GameCharacter
+public class AICharacter implements GameCharacter
 {
+
 	public String _name;
 	public Stats _stats;
 	protected CharacterInventory _items;
 	protected Action _actionState;
+	protected AIBehavior _behave;
+	protected AISelector _select;
 	
 	
-	public PlayerCharacter(String $name)
+	public AICharacter(String $name)
 	{
 		_name = $name;
 		_actionState = new NoAction();
+		_behave = new AIRandomAttackBehavior();
 		setStats();
 	}
 
@@ -27,7 +29,13 @@ public class PlayerCharacter implements GameCharacter
 	
 	public void execute(GameCharacter $target)
 	{
-		_actionState.execute(this, $target);
+		if(_select == null)
+			_actionState.execute(this, $target);
+		
+		else if(_stats.CurrentHitPoints != 0)
+			_behave.execute(this, _select);
+		//else
+			//System.out.println("Something is going wrong");
 	}
 	
 	public int attacked()
@@ -86,10 +94,16 @@ public class PlayerCharacter implements GameCharacter
 	{
 		return _stats;
 	}
-	
+
 	@Override
 	public Action getAction() 
 	{
 		return _actionState;
 	}
+	
+	public void setSelector(AISelector $select)
+	{
+		_select = $select;
+	}
+
 }

@@ -2,6 +2,7 @@ package Combat;
 
 import java.util.ArrayList;
 
+import Character.GameCharacter;
 import Character.PlayerCharacter;
 
 public class Selector 
@@ -45,9 +46,9 @@ public class Selector
 		
 	}
 
-	public void setTarget(PlayerCharacter $target) 
+	public void setTarget(GameCharacter _char) 
 	{
-		_currentStep.setTarget($target);
+		_currentStep.setTarget(_char);
 		
 		for(CharacterHolder ch : _characters)
 		{

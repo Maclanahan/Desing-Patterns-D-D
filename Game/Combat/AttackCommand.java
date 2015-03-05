@@ -2,6 +2,7 @@ package Combat;
 
 import java.awt.Point;
 
+import Character.GameCharacter;
 import Character.PlayerCharacter;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -14,7 +15,7 @@ public class AttackCommand implements Command
 	private TurnStep _turn;
 	private boolean _isDead = false;
 	
-	public AttackCommand(PlayerCharacter _$hero, TurnStep $turn, Point $basePosition)
+	public AttackCommand(GameCharacter _$hero, TurnStep $turn, Point $basePosition)
 	{
 		_turn = $turn;
 		

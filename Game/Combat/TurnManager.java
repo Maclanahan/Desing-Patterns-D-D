@@ -3,6 +3,7 @@ package Combat;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import Character.GameCharacter;
 import Character.PlayerCharacter;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -14,12 +15,12 @@ public class TurnManager extends Observable
 {
 	private ArrayList<TurnStep> _turns;
 	private ArrayList<CharacterHolder> _chars;
-	private ArrayList<PlayerCharacter> _heros;
-	private ArrayList<PlayerCharacter> _enemies;
+	private ArrayList<GameCharacter> _heros;
+	private ArrayList<GameCharacter> _enemies;
 	private Rectangle button;
 	
-	public TurnManager(ArrayList<TurnStep> $turns, ArrayList<CharacterHolder> $chars, ArrayList<PlayerCharacter> $heros, 
-			ArrayList<PlayerCharacter>$enemies) 
+	public TurnManager(ArrayList<TurnStep> $turns, ArrayList<CharacterHolder> $chars, ArrayList<GameCharacter> $heros, 
+			ArrayList<GameCharacter>$enemies) 
 	{
 		_turns = $turns;
 		_chars = $chars;

@@ -7,36 +7,36 @@ public class Attack implements Action
 	private Random rand = new Random();
 	private int max = 5;
 	@Override
-	public void execute(PlayerCharacter $hero, PlayerCharacter $target) 
+	public void execute(GameCharacter $hero, GameCharacter $target) 
 	{
 		if($target != null)
 		{
 			//System.out.println($hero._name + " attacks " + $target._name);
-			int damage = $hero._stats.getStrength() - $target.attacked();
+			int damage = $hero.getStats().getStrength() - $target.attacked();
 			damage += rand.nextInt() % (max + 1);
 			
 			if(damage > 0)
 			{
 				$target.takeDamage(damage);
-				System.out.println($hero._name + " attacks " + $target._name + " and does " + damage + " points of damage.");
+				System.out.println($hero.getName() + " attacks " + $target.getName() + " and does " + damage + " points of damage.");
 			}
 			else
-				System.out.println($hero._name + " attacks " + $target._name + " and missed.");
+				System.out.println($hero.getName() + " attacks " + $target.getName() + " and missed.");
 		}
 	}
 	
 	@Override
-	public int attacked(PlayerCharacter $hero) 
+	public int attacked(GameCharacter $hero) 
 	{
 		//System.out.println("In Action");
-		return $hero._stats.getDefense();
+		return $hero.getStats().getDefense();
 	}
 
 	@Override
-	public int specialed(PlayerCharacter $hero) 
+	public int specialed(GameCharacter $hero) 
 	{
 		//System.out.println("In Action");
-		return $hero._stats.getDefense();
+		return $hero.getStats().getDefense();
 	}
 
 	
