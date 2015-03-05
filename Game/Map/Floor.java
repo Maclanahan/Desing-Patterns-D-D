@@ -1,23 +1,26 @@
 package Map;
 
+import rooms.EmptyRoom;
 import java.util.Random;
+
+import rooms.Room;
 
 public class Floor
 {
-   private static final int MIN_SIZE = 8;
    private static final int TOP_BOTTOM_BORDER = 3;
    private static final int LEFT_RIGHT_BORDER = 5;
    private Room[][] _rooms;
    private char[][] _floor;
-   private int _rows, _cols, _width, _height;
+   private int _rows, _cols, _width, _height, _minSize, _floorType;
    
-   public Floor(int rows, int cols)
+   public Floor(int rows, int cols, int floorType)
    {
       _rows = rows;
       _cols = cols;
-      _width = 10;
+      _floorType = floorType;
+      _width = 9;
       _height = 7;
-      
+      _minSize = (int)(((double)(rows*cols))*(.75));
       
       _floor = new char[(_rows*_height)+(TOP_BOTTOM_BORDER*2)][(_width*_cols)+(LEFT_RIGHT_BORDER*2)];
             
@@ -27,25 +30,53 @@ public class Floor
    
    private void constructRooms()
    {
-      int x, y, count=0;
+      int i, j, x, y, count=0;
       Random rdm = new Random();
       
-      x = rdm.nextInt(_cols);
-      y = rdm.nextInt(_rows);
+      x = rdm.nextInt(_rows);
+      y = rdm.nextInt(_cols);
       
-      while ( count < MIN_SIZE )
+      while ( count < _minSize )
       {
          cleanFloor();
          count = roomRecursion(x,y,0);
       }
       
+      _rooms[x][y].setType('S');
+      
+      for( i=0; i<_rows; i++)
+    	  for ( j=0; j<_cols; j++)
+    	  {
+    		  if ( !(_rooms[i][j] instanceof EmptyRoom) && _rooms[i][j].getType() != 'S')
+    		  {
+    			  x = rdm.nextInt(5);
+    			  
+    			  if ( x == 0 )
+    				  _rooms[i][j].setType('T');
+    			  
+    		  }	  
+    	  }
+      
+      x = rdm.nextInt(_rows);
+      y = rdm.nextInt(_cols);
+      
+      while ( (_rooms[x][y] instanceof EmptyRoom) || _rooms[x][y].getType() == 'S')
+      {
+    	  x = rdm.nextInt(_rows);
+          y = rdm.nextInt(_cols);
+      }
+      
+      if (_floorType == 1 )
+    	  _rooms[x][y].setType('B');
+      else
+    	  _rooms[x][y].setType('E');
    }
    
    private int roomRecursion(int x, int y, int count)
    {
       RoomList list = new RoomList(x,y,_rooms);
       Random rdm = new Random();
-      int i, num = 0, up, right, down, left;
+      int i, up, right, down, left;
       boolean upStatus, rightStatus, downStatus, leftStatus;
       
       upStatus = rightStatus = downStatus = leftStatus = false;
@@ -61,7 +92,6 @@ public class Floor
             if ( i == 0 )
             {
                up = 0;
-               num += 1;
                upStatus = true;
             }
             else
@@ -79,7 +109,6 @@ public class Floor
             if ( i == 0 )
             {
                down = 0;
-               num += 1;
                downStatus = true;
             }
             else
@@ -97,7 +126,6 @@ public class Floor
             if ( i == 0 )
             {
                left = 0;
-               num += 1;
                leftStatus = true;
             }
             else
@@ -115,7 +143,6 @@ public class Floor
             if ( i == 0 )
             {
                right = 0;
-               num += 1;
                rightStatus = true;
             }
             else
@@ -170,6 +197,20 @@ public class Floor
       for ( i=0; i<_rooms.length; i++ )
          for ( j=0; j<_rooms[0].length; j++ )
             _rooms[i][j] = new EmptyRoom(i,j,_rooms);
+   }
+   
+   public char[][] getFloor()
+   {
+	   return _floor;
+   }
+   
+   public char changeTile(int row, int col, char c)
+   {
+	   char temp = _floor[row][col];
+	   
+	   _floor[row][col] = c;
+	   
+	   return temp;
    }
    
    public void printFloor()

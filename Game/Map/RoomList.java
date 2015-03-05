@@ -1,4 +1,5 @@
 package Map;
+import rooms.*;
 
 public class RoomList
 {

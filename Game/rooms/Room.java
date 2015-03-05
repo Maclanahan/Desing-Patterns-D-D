@@ -1,9 +1,10 @@
-package Map;
+package rooms;
 
 public abstract class Room
 {
    protected char[][] _tile;
    protected int _up, _right, _down, _left, _x, _y;
+   protected char _type;
    
    public Room(int x, int y, Room rooms[][])
    { 
@@ -21,13 +22,13 @@ public abstract class Room
    
    private void createRoom()
    {
-     char[][] temp =  {{'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'}};
+     char[][] temp =  {{'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'}};
                
      _tile = temp;
    }
@@ -55,6 +56,17 @@ public abstract class Room
       return _tile;
    }
    
+   public void setType(char type)
+   {   
+	   _type = type;
+	   
+	   _tile[3][4] = type;
+   }
+   
+   public char getType()
+   {
+	   return _type;
+   }
    public int getUp()
    {
       return _up;

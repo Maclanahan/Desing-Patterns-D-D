@@ -1,4 +1,4 @@
-package Map;
+package rooms;
 
 public class EmptyRoom extends Room
 {
@@ -16,13 +16,13 @@ public class EmptyRoom extends Room
    
    private void createRoom()
    {
-     char[][] temp =  {{'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'},
-                       {'X','X','X','X','X','X','X','X','X','X'}};
+     char[][] temp =  {{'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'},
+                       {'X','X','X','X','X','X','X','X','X'}};
                
      _tile = temp;
    }
