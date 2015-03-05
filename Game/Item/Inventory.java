@@ -2,9 +2,11 @@ package Item;
 
 //package application;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import Character.PlayerCharacter;
 import javafx.geometry.Pos;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -20,34 +22,31 @@ public class Inventory {
 	// private BagSlot[] bag;
 	private Bag bag;
 	private Scene scene;
-	private Slot[] slots_A;
-	private Slot[] slots_B;
-	private Slot[] slots_C;
-	private Slot[] slots_D;
+	private ArrayList<Slot> slots_A;
+	private ArrayList<Slot> slots_B;
+	private ArrayList<Slot> slots_C;
+	private ArrayList<Slot> slots_D;
 	private GridPane root;
+	private ArrayList<PlayerCharacter> chars;
+
+	public Inventory(ArrayList<PlayerCharacter> cha) {
+		chars = cha;
+	}
 
 	public List<Slot> slots_A() {
-		List<Slot> slots_list_A = Arrays.asList(slots_A);
-
-		return slots_list_A;
+		return slots_A;
 	}
 
 	public List<Slot> slots_B() {
-		List<Slot> slots_list_B = Arrays.asList(slots_B);
-
-		return slots_list_B;
+		return slots_B;
 	}
 
 	public List<Slot> slots_C() {
-		List<Slot> slots_list_C = Arrays.asList(slots_C);
-
-		return slots_list_C;
+		return slots_C;
 	}
 
 	public List<Slot> slots_D() {
-		List<Slot> slots_list_D = Arrays.asList(slots_D);
-
-		return slots_list_D;
+		return slots_D;
 	}
 
 	public Scene getScene() {
@@ -106,34 +105,34 @@ public class Inventory {
 			// primaryStage.setScene(scene);
 			// primaryStage.show();
 
-			slots_A = new Slot[3];
-			slots_B = new Slot[3];
-			slots_C = new Slot[3];
-			slots_D = new Slot[3];
+			slots_A = new ArrayList<Slot>();
+			slots_B = new ArrayList<Slot>();
+			slots_C = new ArrayList<Slot>();
+			slots_D = new ArrayList<Slot>();
 
-			slots_A[0] = new ArmorSlot(hand);
+			slots_A.add(0, new ArmorSlot(hand, chars.get(0)));
 
-			slots_B[0] = new ArmorSlot(hand);
+			slots_B.add(0, new ArmorSlot(hand, chars.get(1)));
 
-			slots_C[0] = new ArmorSlot(hand);
+			slots_C.add(0, new ArmorSlot(hand, chars.get(2)));
 
-			slots_D[0] = new ArmorSlot(hand);
+			slots_D.add(0, new ArmorSlot(hand, chars.get(3)));
 
-			slots_A[1] = new WeaponSlot(hand);
+			slots_A.add(0, new WeaponSlot(hand, chars.get(0)));
 
-			slots_B[1] = new WeaponSlot(hand);
+			slots_B.add(0, new WeaponSlot(hand, chars.get(1)));
 
-			slots_C[1] = new WeaponSlot(hand);
+			slots_C.add(0, new WeaponSlot(hand, chars.get(2)));
 
-			slots_D[1] = new WeaponSlot(hand);
+			slots_D.add(0, new WeaponSlot(hand, chars.get(3)));
 
-			slots_A[2] = new MiscSlot(hand);
+			slots_A.add(0, new MiscSlot(hand, chars.get(0)));
 
-			slots_B[2] = new MiscSlot(hand);
+			slots_B.add(0, new MiscSlot(hand, chars.get(1)));
 
-			slots_C[2] = new MiscSlot(hand);
+			slots_C.add(0, new MiscSlot(hand, chars.get(2)));
 
-			slots_D[2] = new MiscSlot(hand);
+			slots_D.add(0, new MiscSlot(hand, chars.get(3)));
 
 			for (int i = 0; i < 3; i++) {
 				Rectangle border = new Rectangle();
@@ -142,28 +141,28 @@ public class Inventory {
 				border.setWidth(50);
 				border.setHeight(50);
 				root.add(border, 0, i);
-				(root).add(slots_A[i].getPanel(), 0, i);
+				(root).add(slots_A.get(i).getPanel(), 0, i);
 				Rectangle border2 = new Rectangle();
 				border2.setFill(Color.TRANSPARENT);
 				border2.setStroke(Color.GREEN);
 				border2.setWidth(50);
 				border2.setHeight(50);
 				root.add(border2, 1, i);
-				(root).add(slots_B[i].getPanel(), 1, i);
+				(root).add(slots_B.get(i).getPanel(), 1, i);
 				Rectangle border3 = new Rectangle();
 				border3.setFill(Color.TRANSPARENT);
 				border3.setStroke(Color.RED);
 				border3.setWidth(50);
 				border3.setHeight(50);
 				root.add(border3, 2, i);
-				(root).add(slots_C[i].getPanel(), 2, i);
+				(root).add(slots_C.get(i).getPanel(), 2, i);
 				Rectangle border4 = new Rectangle();
 				border4.setFill(Color.TRANSPARENT);
 				border4.setStroke(Color.BROWN);
 				border4.setWidth(50);
 				border4.setHeight(50);
 				root.add(border4, 3, i);
-				(root).add(slots_D[i].getPanel(), 3, i);
+				(root).add(slots_D.get(i).getPanel(), 3, i);
 
 			}
 

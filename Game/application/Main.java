@@ -80,7 +80,7 @@ public class Main extends Application implements Observer
 	
 	private void setUpInventory() 
 	{
-		_inven = new InventoryScene();
+		_inven = new InventoryScene(_characters);
 		_inven.addObserver(this);
 		
 		_inven.Start();

@@ -1,4 +1,5 @@
 package Item;
+
 //package application;
 
 import javafx.event.EventHandler;
@@ -14,8 +15,9 @@ public abstract class Armor implements Item {
 	private int dmg;
 	private boolean equip;
 	private int id;
+
 	public Armor() {
-		
+
 		// TODO Auto-generated constructor stub
 	}
 
@@ -30,9 +32,8 @@ public abstract class Armor implements Item {
 		equip = false;
 		return equip;
 	}
-	
-	public boolean getEquip()
-	{
+
+	public boolean getEquip() {
 		return equip;
 	}
 
