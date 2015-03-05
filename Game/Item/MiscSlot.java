@@ -1,24 +1,33 @@
 package Item;
+
 //package application;
 
+import Character.GameCharacter;
+import Character.PlayerCharacter;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 public class MiscSlot implements Slot {
 	private StackPane panel;
 	private Item item;
 	private boolean empty;
 	private Hand hand;
+	private Text slotName;
+	private GameCharacter holder;
 
-	public MiscSlot(Hand hand2) {
+	public MiscSlot(Hand hand2, GameCharacter gameCharacter) {
 		this.hand = hand2;
 		// TODO Auto-generated constructor stub
 		panel = new StackPane();
+		this.holder = gameCharacter;
 		panel.setPrefSize(50, 50);
+		slotName = new Text("Misc");
+		panel.getChildren().add(slotName);
 		Rectangle border = new Rectangle();
 		border.setFill(Color.TRANSPARENT);
 		border.setStroke(Color.VIOLET);
@@ -31,10 +40,10 @@ public class MiscSlot implements Slot {
 			public void handle(MouseEvent me) {
 				// System.out.println("empty " + empty);
 				// System.out.println("hand " + hand.empty);
-				if (hand.empty == false) {
-					// System.out.println("hand " + hand.item.getStr());
-				}
-				// System.out.println("item " + item.str);
+				// if (hand.empty == false) {
+				// // System.out.println("hand " + hand.item.getStr());
+				// }
+				// // System.out.println("item " + item.str);
 				if (empty == true && hand.empty != true
 						&& hand.item.getType() == 3) {
 					// System.out.println("put down item!");
@@ -49,6 +58,10 @@ public class MiscSlot implements Slot {
 		});
 	}
 
+	public void setSlot(String name) {
+		slotName.setText("Misc " + name);
+	}
+
 	@Override
 	public boolean hasItem() {
 		// TODO Auto-generated method stub
@@ -60,7 +73,10 @@ public class MiscSlot implements Slot {
 		hand.item = item;
 		hand.empty = false;
 		empty = true;
-
+		holder.getStats().DefenceMod -= item.getDef();
+		holder.getStats().SpeedMod -= item.getSpd();
+		holder.getStats().StrengthMod -= item.getStr();
+		holder.getStats().IntelligenceMod -= item.getInt();
 	}
 
 	@Override
@@ -68,7 +84,10 @@ public class MiscSlot implements Slot {
 		panel.getChildren().add(item.getImage());
 		this.item = item;
 		empty = false;
-
+		holder.getStats().DefenceMod += item.getDef();
+		holder.getStats().SpeedMod += item.getSpd();
+		holder.getStats().StrengthMod += item.getStr();
+		holder.getStats().IntelligenceMod += item.getInt();
 		// TODO Auto-generated method stub
 
 	}
@@ -78,6 +97,10 @@ public class MiscSlot implements Slot {
 		item = hand.item;
 		empty = false;
 		hand.empty = true;
+		holder.getStats().DefenceMod += item.getDef();
+		holder.getStats().SpeedMod += item.getSpd();
+		holder.getStats().StrengthMod += item.getStr();
+		holder.getStats().IntelligenceMod += item.getInt();
 		// TODO Auto-generated method stub
 
 	}

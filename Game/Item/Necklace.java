@@ -1,6 +1,8 @@
 package Item;
+
 //package application;
 
+import Character.PlayerCharacter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -13,15 +15,14 @@ public class Necklace extends Misc {
 	private Image image = new Image("file:nothing.png", 40, 40, false, false);
 	private ImageView imageview = new ImageView(image);
 
-
 	public Necklace() {
 		// TODO Auto-generated constructor stub
 		image = new Image("file:necklace.jpg", 40, 40, false, false);
 		imageview = new ImageView(image);
-		str = 6;
-		intel = 5;
-		def = 5;
-		speed = 5;
+		str = 8;
+		intel = 8;
+		def = 3;
+		speed = 3;
 
 	}
 
@@ -64,6 +65,12 @@ public class Necklace extends Misc {
 	public int getSpd() {
 		// TODO Auto-generated method stub
 		return speed;
+	}
+
+	@Override
+	public void equip(PlayerCharacter holder) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

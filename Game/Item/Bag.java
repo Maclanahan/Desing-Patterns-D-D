@@ -9,7 +9,7 @@ import javafx.scene.shape.Rectangle;
 public class Bag {
 
 	private BagSlot[] items;
-
+	private boolean empty;
 	public Bag(Hand hand, GridPane root) {
 		items = new BagSlot[16];
 		for (int i = 0; i < items.length; i++) {
@@ -56,7 +56,7 @@ public class Bag {
 
 	public boolean hasItem() {
 		// TODO Auto-generated method stub
-		return false;
+		return empty;
 	}
 
 	public void putItem(Item item) {

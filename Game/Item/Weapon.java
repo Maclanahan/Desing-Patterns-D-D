@@ -1,4 +1,5 @@
 package Item;
+
 //package application;
 
 import javafx.scene.image.Image;
@@ -12,6 +13,7 @@ public abstract class Weapon implements Item {
 	private int dmg;
 	private boolean equip;
 	private int id;
+
 	public Weapon() {
 		// TODO Auto-generated constructor stub
 	}
@@ -27,9 +29,8 @@ public abstract class Weapon implements Item {
 		equip = false;
 		return equip;
 	}
-	
-	public boolean getEquip()
-	{
+
+	public boolean getEquip() {
 		return equip;
 	}
 

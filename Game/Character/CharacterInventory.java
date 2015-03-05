@@ -8,11 +8,11 @@ import Item.Weapon;
 
 public class CharacterInventory 
 {
-	private ArrayList<Item.Slot> items;
+	private ArrayList<Item.Slot> items = new ArrayList<Item.Slot>();
 	
-	public void setItems(List<Item.Slot> items)
+	public void setItems(List<Item.Slot> list)
 	{
-		this.items.addAll(items);
+		this.items.addAll(list);
 	}
 	
 	//private ArrayList<Armor> armor;

@@ -1,6 +1,8 @@
 package Item;
+
 //package application;
 
+import Character.PlayerCharacter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -18,8 +20,8 @@ public class Clothes extends Armor {
 		imageview = new ImageView(image);
 		str = 7;
 		intel = 5;
-		def = 5;
-		speed = 5;
+		def = 12;
+		speed = 6;
 		// TODO Auto-generated constructor stub
 	}
 
@@ -62,6 +64,12 @@ public class Clothes extends Armor {
 	public int getSpd() {
 		// TODO Auto-generated method stub
 		return speed;
+	}
+
+	@Override
+	public void equip(PlayerCharacter holder) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

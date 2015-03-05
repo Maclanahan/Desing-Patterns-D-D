@@ -32,9 +32,9 @@ public class BagSlot implements Slot {
 			public void handle(MouseEvent me) {
 				// System.out.println("empty " + empty);
 				// System.out.println("hand " + hand.empty);
-				if (hand.empty == false) {
-					// System.out.println("hand " + hand.item.getStr());
-				}
+				// if (hand.empty == false) {
+				// // System.out.println("hand " + hand.item.getStr());
+				// }
 				// System.out.println("item " + item.str);
 				if (empty == true && hand.empty != true) {
 					// System.out.println("put down item!");

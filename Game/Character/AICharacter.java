@@ -106,4 +106,10 @@ public class AICharacter implements GameCharacter
 		_select = $select;
 	}
 
+	@Override
+	public CharacterInventory getInv() 
+	{
+		return _items;
+	}
+
 }

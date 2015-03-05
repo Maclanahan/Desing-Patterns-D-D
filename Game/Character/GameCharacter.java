@@ -27,4 +27,6 @@ public interface GameCharacter
 	public Stats getStats();
 	
 	public Action getAction();
+	
+	public CharacterInventory getInv();
 }
