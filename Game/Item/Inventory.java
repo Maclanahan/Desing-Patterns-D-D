@@ -5,6 +5,7 @@ package Item;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 import Character.GameCharacter;
 import Character.PlayerCharacter;
@@ -56,6 +57,49 @@ public class Inventory {
 
 	public GridPane getRoot() {
 		return root;
+	}
+
+	public void loot(int level) {
+		bag.putItem(factory(level));
+	}
+
+	public Item factory(int level) {
+		Random rand = new Random();
+		int item_level = rand.nextInt(3);
+
+		if (level == 1) {
+			switch (item_level) {
+			case 0:
+				return new Necklace();
+			case 1:
+				return new Clothes();
+			case 2:
+				return new Sword();
+			}
+
+		}
+		if (level == 2) {
+			switch (item_level) {
+			case 0:
+				return new Book();
+			case 1:
+				return new Mail();
+			case 2:
+				return new Mace();
+			}
+
+		}
+		if (level == 3) {
+			switch (item_level) {
+			case 0:
+				return new Ring();
+			case 1:
+				return new Chainmail();
+			case 2:
+				return new Pike();
+			}
+		}
+		return null;
 	}
 
 	public void initialInv() {
@@ -166,12 +210,8 @@ public class Inventory {
 				(root).add(slots_D.get(i).getPanel(), 3, i);
 
 			}
-
-			// Sword x = new Sword();
-			// bag.putItem(x);
-			initialInv();
-			// }
-
+			loot(1);
+			loot(1);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

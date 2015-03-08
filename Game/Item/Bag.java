@@ -1,4 +1,5 @@
 package Item;
+
 //package application;
 
 import javafx.scene.layout.GridPane;
@@ -10,6 +11,7 @@ public class Bag {
 
 	private BagSlot[] items;
 	private boolean empty;
+
 	public Bag(Hand hand, GridPane root) {
 		items = new BagSlot[16];
 		for (int i = 0; i < items.length; i++) {
@@ -63,25 +65,13 @@ public class Bag {
 		// TODO Auto-generated method stub
 
 		for (int i = 0; i < items.length; i++) {
-			if (items[i].isEmpty() == true)
-			{
-				
+			if (items[i].isEmpty() == true) {
+
 				items[i].putItem(item);
 				return;
 			}
 		}
 
 	}
-
-	// public void instanceBag(GridPane root) {
-	// int i = 0;
-	// int j = 0;
-	// System.out.println("here!!!");
-	// for (BagSlot slot : bag) {
-	// root.add(slot.panel, i, j);
-	// i++;
-	// j++;
-	// }
-	// }
 
 }
