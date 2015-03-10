@@ -11,9 +11,8 @@ public class Stats {
 
 	public int CurrentHitPoints;
 
-	public Stats() {
-		base = new BaseStats();
-		setDefaultStats();
+	public Stats(BaseStats $base) {
+		base = $base;
 		CurrentHitPoints = base.HitPoints;
 	}
 
@@ -48,5 +47,10 @@ public class Stats {
 
 	public int getHitPoints() {
 		return HitPointsMod + base.HitPoints;
+	}
+
+	public void reset() 
+	{
+		CurrentHitPoints = base.HitPoints;
 	}
 }

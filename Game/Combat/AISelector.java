@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import Character.AICharacter;
+import Character.BaseStats;
 import Character.GameCharacter;
 import Character.PlayerCharacter;
 
@@ -32,7 +33,7 @@ public class AISelector
 	public GameCharacter getRandomHero()
 	{
 		boolean isValidTarget = false;
-		GameCharacter temp = new AICharacter("nothing");
+		GameCharacter temp = new AICharacter("nothing", new BaseStats(0,0,0,0,0), null);
 		
 		while(isValidTarget == false && _heros.size() > 0)
 		{

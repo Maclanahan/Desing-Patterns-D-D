@@ -20,9 +20,10 @@ public class InventoryScene extends Observable implements GameScene {
 	private Group root;
 	private Text txt;
 	private int numVisited = 0;
+	private Inventory inv;
 
 	public InventoryScene(ArrayList<GameCharacter> _characters) {
-		Inventory inv = new Inventory(_characters);
+		inv = new Inventory(_characters);
 		inv.start();
 
 		_characters.get(0).getInv().setItems(inv.slots_A());
@@ -70,6 +71,11 @@ public class InventoryScene extends Observable implements GameScene {
 	@Override
 	public String getType() {
 		return "Map";
+	}
+
+	public void loot(int $level) 
+	{
+		inv.loot($level);
 	}
 
 }

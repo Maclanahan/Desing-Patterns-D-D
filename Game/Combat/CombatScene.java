@@ -165,13 +165,23 @@ public class CombatScene extends Observable implements Observer, GameScene
 		{
 			System.out.println("YOU LOSE");//lose state
 			setChanged();
-			notifyObservers("Lost");
+			notifyObservers("LOSE");
 		}
 		else if(isCombatOver(_enemies))
 		{
 			System.out.println("YOU WIN!");//win state
+			resetHeros();
 			setChanged();
-			notifyObservers("Won");
+			notifyObservers("WIN");
+		}
+	}
+
+	private void resetHeros() 
+	{
+		for(GameCharacter gc : _heros)
+		{
+			gc.reset();
+			
 		}
 	}
 

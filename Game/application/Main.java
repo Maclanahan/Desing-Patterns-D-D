@@ -5,6 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import Character.AICharacter;
+import Character.AICharacterFactory;
 import Character.GameCharacter;
 import Character.PlayerCharacter;
 import Combat.CombatScene;
@@ -27,6 +28,7 @@ public class Main extends Application implements Observer
 	
 	private MapScene _map;
 	private InventoryScene _inven;
+	private AICharacterFactory EnemyFactory;
 	
 	@Override
 	public void start(Stage primaryStage) 
@@ -42,7 +44,7 @@ public class Main extends Application implements Observer
 
 	private void goToCombat()
 	{
-		CombatScene combat = new CombatScene(_characters, _enemies);
+		CombatScene combat = new CombatScene(_characters, EnemyFactory.getEnemies(1, 4));
 		combat.addObserver(this);
 		
 		_primaryStage.setScene(combat.getScene());
@@ -69,15 +71,12 @@ public class Main extends Application implements Observer
 	
 	private void setUpCharacters() 
 	{
+		EnemyFactory = new AICharacterFactory(4);
+		
 		_characters.add(new PlayerCharacter("Peter"));
 		_characters.add(new PlayerCharacter("Susan"));
 		_characters.add(new PlayerCharacter("Edmund"));
 		_characters.add(new PlayerCharacter("Lucy"));
-		
-		_enemies.add(new AICharacter("Wolf"));
-		_enemies.add(new AICharacter("White Witch"));
-		_enemies.add(new AICharacter("Dwarf"));
-		_enemies.add(new AICharacter("Gaint"));
 	}
 	
 	private void setUpInventory() 
@@ -109,6 +108,12 @@ public class Main extends Application implements Observer
 		
 		if(str.equalsIgnoreCase("COMBAT"))
 			goToCombat();
+		
+		else if(str.equalsIgnoreCase("WIN"))
+		{
+			_inven.loot(1);
+			goToMap();
+		}
 		
 		else if(str.equalsIgnoreCase("INVENTORY"))
 			goToInventory();
