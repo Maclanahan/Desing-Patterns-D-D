@@ -26,7 +26,7 @@ public interface Item {
 
 	public int getInt();
 
-	public int getDmg();
+	public int getHP();
 
 	public int getDef();
 

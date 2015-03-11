@@ -77,6 +77,7 @@ public class MiscSlot implements Slot {
 		holder.getStats().SpeedMod -= item.getSpd();
 		holder.getStats().StrengthMod -= item.getStr();
 		holder.getStats().IntelligenceMod -= item.getInt();
+		holder.getStats().HitPointsMod -= item.getHP();
 	}
 
 	@Override
@@ -88,6 +89,7 @@ public class MiscSlot implements Slot {
 		holder.getStats().SpeedMod += item.getSpd();
 		holder.getStats().StrengthMod += item.getStr();
 		holder.getStats().IntelligenceMod += item.getInt();
+		holder.getStats().HitPointsMod += item.getHP();
 		// TODO Auto-generated method stub
 
 	}
@@ -101,6 +103,7 @@ public class MiscSlot implements Slot {
 		holder.getStats().SpeedMod += item.getSpd();
 		holder.getStats().StrengthMod += item.getStr();
 		holder.getStats().IntelligenceMod += item.getInt();
+		holder.getStats().HitPointsMod += item.getHP();
 		// TODO Auto-generated method stub
 
 	}

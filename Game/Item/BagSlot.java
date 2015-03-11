@@ -35,7 +35,7 @@ public class BagSlot implements Slot {
 				// if (hand.empty == false) {
 				// // System.out.println("hand " + hand.item.getStr());
 				// }
-				// System.out.println("item " + item.str);
+				//System.out.println("item " + item.str);
 				if (empty == true && hand.empty != true) {
 					// System.out.println("put down item!");
 					putItem();

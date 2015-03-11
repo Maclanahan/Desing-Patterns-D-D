@@ -6,14 +6,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public abstract class Misc implements Item {
-	private int def;
-	private int intel;
-	private int speed;
-	private int str;
-	private int dmg;
+	protected int def;
+	protected int intel;
+	protected int speed;
+	protected int str;
+	protected int hp;
 	private boolean equip;
 	private int id;
-
+	protected Image image = new Image("file:nothing.png", 40, 40, false, false);
+	protected ImageView imageview = new ImageView(image);
 	public Misc() {
 		// TODO Auto-generated constructor stub
 	}

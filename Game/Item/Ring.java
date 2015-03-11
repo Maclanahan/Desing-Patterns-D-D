@@ -3,17 +3,11 @@ package Item;
 //package application;
 
 import Character.PlayerCharacter;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Ring extends Misc {
-	private int str = 0;
-	private int intel = 0;
-	private int def = 0;
-	private int speed = 0;
-	private int dmg = 0;
-	private Image image = new Image("file:nothing.png", 40, 40, false, false);
-	private ImageView imageview = new ImageView(image);
 
 	public Ring() {
 		// TODO Auto-generated constructor stub
@@ -23,7 +17,10 @@ public class Ring extends Misc {
 		intel = 33;
 		def = 20;
 		speed = 15;
-
+		hp = 30;
+		Tooltip t = new Tooltip("def:" + def + "\nint:" + intel + "\nspeed:"
+				+ speed + "\nstr:" + str + "\nhp:" + hp);
+		Tooltip.install(imageview, t);
 	}
 
 	public int getID() {
@@ -50,9 +47,9 @@ public class Ring extends Misc {
 	}
 
 	@Override
-	public int getDmg() {
+	public int getHP() {
 		// TODO Auto-generated method stub
-		return dmg;
+		return hp;
 	}
 
 	@Override

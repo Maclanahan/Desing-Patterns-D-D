@@ -38,7 +38,16 @@ public class WeaponSlot implements Slot {
 		empty = true;
 		panel.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent me) {
-				// System.out.println("holder def " + holder.getStats().DefenceMod);
+				// System.out.println("holder def " +
+				// holder.getStats().DefenceMod);
+				// System.out.println("holder int "
+				// + holder.getStats().IntelligenceMod);
+				// System.out.println("holder spd " +
+				// holder.getStats().SpeedMod);
+				// System.out.println("holder str "
+				// + holder.getStats().StrengthMod);
+				// System.out.println("holder hp "
+				// + holder.getStats().HitPointsMod);
 				// System.out.println("holder int "
 				// + holder.getStats().IntelligenceMod);
 				// System.out.println("holder str " +
@@ -72,6 +81,7 @@ public class WeaponSlot implements Slot {
 		holder.getStats().SpeedMod -= item.getSpd();
 		holder.getStats().StrengthMod -= item.getStr();
 		holder.getStats().IntelligenceMod -= item.getInt();
+		holder.getStats().HitPointsMod -= item.getHP();
 
 	}
 
@@ -83,6 +93,7 @@ public class WeaponSlot implements Slot {
 		holder.getStats().SpeedMod += item.getSpd();
 		holder.getStats().StrengthMod += item.getStr();
 		holder.getStats().IntelligenceMod += item.getInt();
+		holder.getStats().HitPointsMod += item.getHP();
 		empty = false;
 
 		// TODO Auto-generated method stub
@@ -98,6 +109,7 @@ public class WeaponSlot implements Slot {
 		holder.getStats().SpeedMod += item.getSpd();
 		holder.getStats().StrengthMod += item.getStr();
 		holder.getStats().IntelligenceMod += item.getInt();
+		holder.getStats().HitPointsMod += item.getHP();
 		// TODO Auto-generated method stub
 
 	}

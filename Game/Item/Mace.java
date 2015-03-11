@@ -3,17 +3,11 @@ package Item;
 //package application;
 
 import Character.PlayerCharacter;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Mace extends Weapon {
-	private int str = 0;
-	private int intel = 0;
-	private int def = 0;
-	private int speed = 0;
-	private int dmg = 0;
-	private Image image = new Image("file:nothing.png", 40, 40, false, false);
-	private ImageView imageview = new ImageView(image);
 
 	public Mace() {
 		image = new Image("file:mace.png", 40, 40, false, false);
@@ -22,7 +16,10 @@ public class Mace extends Weapon {
 		intel = 8;
 		def = 9;
 		speed = 3;
-		dmg = 20;
+		hp = 6;
+		Tooltip t = new Tooltip("def:" + def + "\nint:" + intel + "\nspeed:"
+				+ speed + "\nstr:" + str + "\nhp:" + hp);
+		Tooltip.install(imageview, t);
 		// TODO Auto-generated constructor stub
 	}
 
@@ -50,9 +47,9 @@ public class Mace extends Weapon {
 	}
 
 	@Override
-	public int getDmg() {
+	public int getHP() {
 		// TODO Auto-generated method stub
-		return dmg;
+		return hp;
 	}
 
 	@Override

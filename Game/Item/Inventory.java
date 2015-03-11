@@ -30,6 +30,7 @@ public class Inventory {
 	private ArrayList<Slot> slots_D;
 	private GridPane root;
 	private ArrayList<GameCharacter> chars;
+	private TrashSlot trash;
 
 	public Inventory(ArrayList<GameCharacter> _characters) {
 		chars = _characters;
@@ -146,7 +147,7 @@ public class Inventory {
 			root.setAlignment(Pos.BOTTOM_CENTER);
 			scene = new Scene(root, 400, 400);
 			bag = new Bag(hand, root);
-
+			trash = new TrashSlot(hand, root);
 			// primaryStage.setScene(scene);
 			// primaryStage.show();
 
@@ -208,10 +209,10 @@ public class Inventory {
 				border4.setHeight(50);
 				root.add(border4, 3, i);
 				(root).add(slots_D.get(i).getPanel(), 3, i);
+				// initialInv();
 
 			}
-			loot(1);
-			loot(1);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
