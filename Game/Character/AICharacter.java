@@ -13,18 +13,12 @@ public class AICharacter implements GameCharacter
 	protected AISelector _select;
 	
 	
-	public AICharacter(String $name)
+	public AICharacter(String $name, BaseStats $baseStats, AIBehavior $behave)
 	{
 		_name = $name;
 		_actionState = new NoAction();
-		_behave = new AIRandomAttackBehavior();
-		setStats();
-	}
-
-	private void setStats() 
-	{
-		_stats = new Stats();
-		
+		_behave = $behave;
+		_stats = new Stats($baseStats);
 	}
 	
 	public void execute(GameCharacter $target)
@@ -110,6 +104,12 @@ public class AICharacter implements GameCharacter
 	public CharacterInventory getInv() 
 	{
 		return _items;
+	}
+
+	@Override
+	public void reset() 
+	{
+		
 	}
 
 }

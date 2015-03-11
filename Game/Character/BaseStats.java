@@ -10,13 +10,13 @@ public class BaseStats
 	
 	//private BaseStats base;
 	
-	public BaseStats()
+	public BaseStats(int $HitPoints, int $Strength, int $Defence, int $Speed, int $Intelligence)
 	{
-		setDefaultStats();
+		HitPoints = $HitPoints;
+		Strength = $Strength;
+		Defence = $Defence;
+		Speed = $Speed;
+		Intelligence = $Intelligence;
 	}
 
-	private void setDefaultStats() 
-	{
-		HitPoints = Strength = Defence = Speed = Intelligence = 5;
-	}
 }

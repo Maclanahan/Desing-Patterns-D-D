@@ -23,7 +23,7 @@ public class PlayerCharacter implements GameCharacter
 	}
 
 	private void setStats() {
-		_stats = new Stats();
+		_stats = new Stats(new BaseStats(5,5,5,5,5));
 
 	}
 	
@@ -84,5 +84,11 @@ public class PlayerCharacter implements GameCharacter
 	public Action getAction() 
 	{
 		return _actionState;
+	}
+
+	@Override
+	public void reset() 
+	{
+		_stats.reset();
 	}
 }

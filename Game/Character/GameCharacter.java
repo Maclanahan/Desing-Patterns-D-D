@@ -29,4 +29,6 @@ public interface GameCharacter
 	public Action getAction();
 	
 	public CharacterInventory getInv();
+
+	public void reset();
 }
