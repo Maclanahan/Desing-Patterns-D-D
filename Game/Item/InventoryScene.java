@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 import Character.GameCharacter;
 import Character.PlayerCharacter;
 import application.GameScene;
+import application.SceneSwitchInfo;
 
 public class InventoryScene extends Observable implements GameScene {
 
@@ -44,7 +45,7 @@ public class InventoryScene extends Observable implements GameScene {
 		button.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent me) {
 				setChanged();
-				notifyObservers("MAP");
+				notifyObservers(new SceneSwitchInfo("MAP", 0));
 			}
 		});
 

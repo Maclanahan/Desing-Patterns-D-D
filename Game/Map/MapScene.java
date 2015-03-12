@@ -2,6 +2,7 @@ package Map;
 
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+
 import java.util.Observable;
 import java.util.Scanner;
 
@@ -13,6 +14,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import application.GameScene;
+import application.SceneSwitchInfo;
 
 public class MapScene extends Observable implements GameScene 
 {
@@ -82,9 +84,9 @@ public class MapScene extends Observable implements GameScene
 		scan.close();
 		   
 		//EventHandler handler = new EventHandler
-		txt = new Text(100,100, "I'm The Map Scene!\n Visited " + numVisited + " times");
+		//txt = new Text(100,100, "I'm The Map Scene!\n Visited " + numVisited + " times");
 		
-		root.getChildren().add(txt);
+		//root.getChildren().add(txt);
 		
 		Rectangle button = new Rectangle(200, 100, Color.RED);
 		
@@ -95,7 +97,7 @@ public class MapScene extends Observable implements GameScene
 				//System.out.println("Mouse Pressed");
 				//execute();
 				setChanged();
-				notifyObservers("COMBAT");
+				notifyObservers(new SceneSwitchInfo("COMBAT", current/2 +1));
 			}
 		});
 		
@@ -113,7 +115,7 @@ public class MapScene extends Observable implements GameScene
 				//System.out.println("Mouse Pressed");
 				//execute();
 				setChanged();
-				notifyObservers("INVENTORY");
+				notifyObservers(new SceneSwitchInfo("INVENTORY", current/2 + 1));
 			}
 		});
 		
@@ -187,7 +189,7 @@ public class MapScene extends Observable implements GameScene
 	public Scene getScene() 
 	{
 		numVisited++;
-		txt.textProperty().set("I'm The Map Scene!\n Visited " + numVisited + " times");
+		//txt.textProperty().set("I'm The Map Scene!\n Visited " + numVisited + " times");
 		return scene;
 	}
 
@@ -197,6 +199,9 @@ public class MapScene extends Observable implements GameScene
 		return "Map";
 	}
 
-	
+	public int getDifficulty()
+	{
+		return current/2 + 1;
+	}
 
 }

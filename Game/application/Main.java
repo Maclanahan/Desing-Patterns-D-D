@@ -42,9 +42,9 @@ public class Main extends Application implements Observer
 		goToMap();
 	}
 
-	private void goToCombat()
+	private void goToCombat(int $difficulty)
 	{
-		CombatScene combat = new CombatScene(_characters, EnemyFactory.getEnemies(1, 4));
+		CombatScene combat = new CombatScene(_characters, EnemyFactory.getEnemies($difficulty, 4));
 		combat.addObserver(this);
 		
 		_primaryStage.setScene(combat.getScene());
@@ -102,20 +102,20 @@ public class Main extends Application implements Observer
 	@Override
 	public void update(Observable o, Object arg) 
 	{
-		String str = (String)arg;
+		SceneSwitchInfo info = (SceneSwitchInfo)arg;
 		
 		//System.out.println(str);
 		
-		if(str.equalsIgnoreCase("COMBAT"))
-			goToCombat();
+		if(info.getSceneInfo().equalsIgnoreCase("COMBAT"))
+			goToCombat(_map.getDifficulty());
 		
-		else if(str.equalsIgnoreCase("WIN"))
+		else if(info.getSceneInfo().equalsIgnoreCase("WIN"))
 		{
-			_inven.loot(1);
+			_inven.loot(_map.getDifficulty());
 			goToMap();
 		}
 		
-		else if(str.equalsIgnoreCase("INVENTORY"))
+		else if(info.getSceneInfo().equalsIgnoreCase("INVENTORY"))
 			goToInventory();
 		
 		else

@@ -5,6 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import application.GameScene;
+import application.SceneSwitchInfo;
 import Character.AICharacter;
 import Character.GameCharacter;
 import Character.PlayerCharacter;
@@ -165,14 +166,14 @@ public class CombatScene extends Observable implements Observer, GameScene
 		{
 			System.out.println("YOU LOSE");//lose state
 			setChanged();
-			notifyObservers("LOSE");
+			notifyObservers(new SceneSwitchInfo("LOSE", 1));
 		}
 		else if(isCombatOver(_enemies))
 		{
 			System.out.println("YOU WIN!");//win state
 			resetHeros();
 			setChanged();
-			notifyObservers("WIN");
+			notifyObservers(new SceneSwitchInfo("WIN", 1));
 		}
 	}
 
