@@ -24,13 +24,16 @@ public class MapScene extends Observable implements GameScene
 	private int numVisited = 0;
 	
 	private char[][] floor;
-	private int current = 0, tileWidth = 5, tileHeight = 5;
+	private int current = 0, tileWidth = 64, tileHeight = 64;
 	private Rectangle[][] tiles;
 	private Rectangle playerPos;
 	private DungeonFactory df = new DungeonFactory();
 	private Floor[] floors = df.getFloors();
 
 	private Player player = new Player(floors[current]);
+	private Rectangle button;
+	private Rectangle button2;
+	
 	
 	public MapScene()
 	{
@@ -47,26 +50,26 @@ public class MapScene extends Observable implements GameScene
 					{
 						if(checkWall(0,1,player) && (key.getText().equals("d") || key.getCode() == KeyCode.RIGHT))
 						{
+							movePlayer(0,-1);
 							player.setCol(player.getCol()+1);
-							playerPos.setX(player.getCol()*tileWidth);
 						}
 						
 						if(checkWall(0,-1,player) && (key.getText().equals("a") || key.getCode() == KeyCode.LEFT))
 						{
+							movePlayer(0,1);
 							player.setCol(player.getCol()-1);
-							playerPos.setX(player.getCol()*tileWidth);
 						}
 						
 						if(checkWall(-1,0,player) && (key.getText().equals("w") || key.getCode() == KeyCode.UP))
 						{
+							movePlayer(1,0);
 							player.setRow(player.getRow()-1);
-							playerPos.setY(player.getRow()*tileHeight);
 						}
 						
 						if(checkWall(1,0,player) && (key.getText().equals("s") || key.getCode() == KeyCode.DOWN))
 						{
+							movePlayer(-1,0);
 							player.setRow(player.getRow()+1);
-							playerPos.setY(player.getRow()*tileHeight);
 						}
 						
 						if (floor[player.getRow()][player.getCol()] == 'E')
@@ -75,7 +78,7 @@ public class MapScene extends Observable implements GameScene
 							
 							removeFloor();
 							addFloor();
-							
+							refreshButtons();
 						}
 						
 					}
@@ -88,7 +91,7 @@ public class MapScene extends Observable implements GameScene
 		
 		//root.getChildren().add(txt);
 		
-		Rectangle button = new Rectangle(200, 100, Color.RED);
+		button = new Rectangle(100, 30, Color.RED);
 		
 		button.setOnMousePressed(new EventHandler<MouseEvent>()
 		{
@@ -101,12 +104,12 @@ public class MapScene extends Observable implements GameScene
 			}
 		});
 		
-		button.xProperty().set(400);
-		button.yProperty().set(300);
+		button.xProperty().set(520);
+		button.yProperty().set(20);
 		
 		root.getChildren().add(button);
 		
-		Rectangle button2 = new Rectangle(200, 100, Color.BLUE);
+		button2 = new Rectangle(100, 30, Color.BLUE);
 		
 		button2.setOnMousePressed(new EventHandler<MouseEvent>()
 		{
@@ -119,8 +122,8 @@ public class MapScene extends Observable implements GameScene
 			}
 		});
 		
-		button2.xProperty().set(400);
-		button2.yProperty().set(100);
+		button2.xProperty().set(520);
+		button2.yProperty().set(440);
 		
 		root.getChildren().add(button2);
 		
@@ -140,9 +143,7 @@ public class MapScene extends Observable implements GameScene
 		
 		for ( i=0; i<tiles.length; i++ )
 			for ( j=0; j<tiles[0].length; j++ )
-			{
 				root.getChildren().remove(tiles[i][j]);
-			}
 		
 		root.getChildren().remove(playerPos);
 	}
@@ -153,12 +154,15 @@ public class MapScene extends Observable implements GameScene
 		
 		tiles = new Rectangle[floors[current].getFloor().length][floors[current].getFloor()[current].length];
 		floor = floors[current].getFloor();
+		player = new Player(floors[current]);
 		
 		for ( i=0; i<tiles.length; i++ )
 			for ( j=0; j<tiles[0].length; j++ )
 			{
 				if ( floor[i][j] == 'X' )
 					tiles[i][j] = new Rectangle(tileWidth,tileHeight,Color.BLACK);
+				else if ( floor[i][j] == 'T')
+					tiles[i][j] = new Rectangle(tileWidth,tileHeight,Color.YELLOW);
 				else if ( floor[i][j] == 'E')
 					tiles[i][j] = new Rectangle(tileWidth,tileHeight,Color.RED);
 				else if ( floor[i][j] == 'B')
@@ -166,17 +170,34 @@ public class MapScene extends Observable implements GameScene
 				else
 					tiles[i][j] = new Rectangle(tileWidth,tileHeight,Color.WHITE);
 				
-				tiles[i][j].setX(j*tileWidth);
-				tiles[i][j].setY(i*tileHeight);
+				tiles[i][j].setX((j*tileWidth)-(player.getCol()*tileWidth)+(scene.getWidth()/2)-(tileWidth/2));
+				tiles[i][j].setY((i*tileHeight)-(player.getRow()*tileHeight)+(scene.getHeight()/2)-(tileHeight/2));
 				
 				root.getChildren().add(tiles[i][j]);
 			}
 		
-		player = new Player(floors[current]);
 		playerPos = new Rectangle(tileWidth, tileHeight,Color.GREEN);
-		playerPos.setX(player.getCol()*tileWidth);
-		playerPos.setY(player.getRow()*tileHeight);
+		playerPos.setX((scene.getWidth()/2)-(tileWidth/2));
+		playerPos.setY((scene.getHeight()/2)-(tileHeight/2));
 		root.getChildren().add(playerPos);
+	}
+	
+	private void movePlayer(int row, int col)
+	{
+		int i, j;
+		
+		for ( i=0; i<tiles.length; i++ )
+			for ( j=0; j<tiles[0].length; j++ )
+			{
+				tiles[i][j].setX(tiles[i][j].getX()+(col*tileWidth));
+				tiles[i][j].setY(tiles[i][j].getY()+(row*tileHeight));
+			}
+	}
+	
+	private void refreshButtons()
+	{
+		button.toFront();
+		button2.toFront();
 	}
 	
 	@Override

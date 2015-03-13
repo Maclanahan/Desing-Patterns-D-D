@@ -19,8 +19,8 @@ public class DungeonFactory
 		  
 			for ( num=0; num<floors.length; num++)
 			{
-				i = rdm.nextInt(5)+3;
-				j = rdm.nextInt(5)+3;
+				i = rdm.nextInt(3)+3;
+				j = rdm.nextInt(3)+3;
 		   
 				if(num == 0)
 					type = 0; // starting floor
