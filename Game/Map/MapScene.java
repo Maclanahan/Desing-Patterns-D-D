@@ -143,7 +143,7 @@ public class MapScene extends Observable implements GameScene
 		riskButton.getChildren().addAll(button,txt);
 		
 		riskButton.layoutXProperty().set(530);
-		riskButton.layoutYProperty().set(1);
+		riskButton.layoutYProperty().set(10);
 		
 		riskButton.setOnMousePressed(new EventHandler<MouseEvent>()
 		{
@@ -218,10 +218,10 @@ public class MapScene extends Observable implements GameScene
 		
 		if ( steps > MIN_STEPS && rdm.nextInt(100) < ENCOUNTER_CHANCE)
 		{
-			System.out.println("Battle Triggered");
+			//System.out.println("Battle Triggered");
 			
-			/*setChanged();
-			notifyObservers(new SceneSwitchInfo("COMBAT", current/2 +1));*/
+			setChanged();
+			notifyObservers(new SceneSwitchInfo("COMBAT", current/2 +1));
 			
 			steps = 0;
 		}
