@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import Character.AICharacter;
 import Character.AICharacterFactory;
 import Character.GameCharacter;
 import Character.PlayerCharacter;
@@ -13,16 +12,12 @@ import Item.InventoryScene;
 import Map.MapScene;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.paint.Color;
 
 
 public class Main extends Application implements Observer
 {
 	private ArrayList<GameCharacter> _characters = new ArrayList<>();
-	private ArrayList<GameCharacter> _enemies = new ArrayList<>();
+	//private ArrayList<GameCharacter> _enemies = new ArrayList<>();
 	
 	private Stage _primaryStage;
 	
@@ -114,9 +109,11 @@ public class Main extends Application implements Observer
 			_inven.loot(_map.getDifficulty());
 			goToMap();
 		}
-		
 		else if(info.getSceneInfo().equalsIgnoreCase("INVENTORY"))
 			goToInventory();
+		
+		else if(info.getSceneInfo().equalsIgnoreCase("TREASURE"))
+			_inven.loot(_map.getDifficulty());
 		
 		else
 			goToMap();

@@ -11,7 +11,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import Character.GameCharacter;
-import Character.PlayerCharacter;
 import application.GameScene;
 import application.SceneSwitchInfo;
 

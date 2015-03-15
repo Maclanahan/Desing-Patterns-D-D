@@ -5,6 +5,7 @@ import javafx.scene.input.KeyEvent;
 
 import java.util.Observable;
 import java.util.Scanner;
+import java.util.Random;
 
 import javafx.event.EventHandler;
 import javafx.scene.Group;
@@ -12,7 +13,10 @@ import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.layout.StackPane;
 import application.GameScene;
 import application.SceneSwitchInfo;
 
@@ -20,8 +24,11 @@ public class MapScene extends Observable implements GameScene
 {
 	private Scene scene;
 	private Group root;
-	private Text txt;
-	private int numVisited = 0;
+	private Text leveltxt;
+	private int steps = 0;
+	private static int MIN_STEPS = 10;
+	private static int ENCOUNTER_CHANCE = 5; // out of 100%
+	private static int RISK_CHANCE = 70; // out of 100%. The higher, the more likely the player gets treasure
 	
 	private char[][] floor;
 	private int current = 0, tileWidth = 64, tileHeight = 64;
@@ -31,12 +38,14 @@ public class MapScene extends Observable implements GameScene
 	private Floor[] floors = df.getFloors();
 
 	private Player player = new Player(floors[current]);
-	private Rectangle button;
-	private Rectangle button2;
+	private StackPane invButton;
+	private StackPane riskButton;
 	
 	
 	public MapScene()
 	{
+		Rectangle button;
+		Text txt;
 		Scanner scan = new Scanner(System.in);
 		
 		root = new Group();
@@ -48,6 +57,8 @@ public class MapScene extends Observable implements GameScene
 				{
 					public void handle(KeyEvent key)
 					{
+						steps += 1;
+						
 						if(checkWall(0,1,player) && (key.getText().equals("d") || key.getCode() == KeyCode.RIGHT))
 						{
 							movePlayer(0,-1);
@@ -72,61 +83,110 @@ public class MapScene extends Observable implements GameScene
 							player.setRow(player.getRow()+1);
 						}
 						
+						if (floor[player.getRow()][player.getCol()] == 'T')
+						{
+							floor[player.getRow()][player.getCol()] = 'O';
+							tiles[player.getRow()][player.getCol()].setFill(Color.GRAY);
+								
+							setChanged();
+							notifyObservers(new SceneSwitchInfo("TREASURE", current/2+1));
+						}
+							
 						if (floor[player.getRow()][player.getCol()] == 'E')
 						{
 							current += 1;
+							leveltxt.setText("Floor: " + (current+1));
 							
 							removeFloor();
 							addFloor();
 							refreshButtons();
 						}
 						
+						if (floor[player.getRow()][player.getCol()] == 'B')
+						{
+							/*setChanged();
+							notifyObservers(new SceneSwitchInfo("COMBAT", boss_num));*/
+							
+							System.out.println("You beat the game!!!");
+						}
+						
+						randomEncounter();
 					}
 				});
 		
 		scan.close();
 		   
 		//EventHandler handler = new EventHandler
-		//txt = new Text(100,100, "I'm The Map Scene!\n Visited " + numVisited + " times");
-		
-		//root.getChildren().add(txt);
 		
 		button = new Rectangle(100, 30, Color.RED);
 		
-		button.setOnMousePressed(new EventHandler<MouseEvent>()
+		txt = new Text(110,40, "Risk");
+		txt.setFill(Color.WHITE);
+		txt.setFont(Font.font(null, FontWeight.NORMAL, 20));
+		
+		riskButton = new StackPane();
+		riskButton.getChildren().addAll(button,txt);
+		
+		riskButton.layoutXProperty().set(530);
+		riskButton.layoutYProperty().set(1);
+		
+		riskButton.setOnMousePressed(new EventHandler<MouseEvent>()
 		{
 			public void handle(MouseEvent me)
 			{
-				//System.out.println("Mouse Pressed");
-				//execute();
-				setChanged();
-				notifyObservers(new SceneSwitchInfo("COMBAT", current/2 +1));
+				Random rdm = new Random();
+				int control = current/2 + 1;
+				
+				/*if ( current/2 + 2 > floors.length/2)
+					control = floors.length/2;
+				else
+					control = current/2 + 2;*/
+				
+				if ( rdm.nextInt(100) < RISK_CHANCE)
+				{
+					setChanged();
+					notifyObservers(new SceneSwitchInfo("TREASURE", control));
+				}
+				else
+				{
+					setChanged();
+					notifyObservers(new SceneSwitchInfo("COMBAT", control));
+				}
 			}
 		});
 		
-		button.xProperty().set(520);
-		button.yProperty().set(20);
+		root.getChildren().add(riskButton);
 		
-		root.getChildren().add(button);
+		button = new Rectangle(100, 30, Color.BLUE);
 		
-		button2 = new Rectangle(100, 30, Color.BLUE);
+		txt = new Text(540,460, "Inventory");
+		txt.setFill(Color.WHITE);
+		txt.setFont(Font.font(null, FontWeight.NORMAL, 20));
 		
-		button2.setOnMousePressed(new EventHandler<MouseEvent>()
-		{
-			public void handle(MouseEvent me)
-			{
-				//System.out.println("Mouse Pressed");
-				//execute();
-				setChanged();
-				notifyObservers(new SceneSwitchInfo("INVENTORY", current/2 + 1));
-			}
-		});
+		invButton = new StackPane();
+		invButton.getChildren().addAll(button,txt);
 		
-		button2.xProperty().set(520);
-		button2.yProperty().set(440);
+		invButton.layoutXProperty().set(530);
+		invButton.layoutYProperty().set(440);
 		
-		root.getChildren().add(button2);
+		invButton.setOnMousePressed(new EventHandler<MouseEvent>()
+				{
+					public void handle(MouseEvent me)
+					{
+						//System.out.println("Mouse Pressed");
+						//execute();
+						setChanged();
+						notifyObservers(new SceneSwitchInfo("INVENTORY", current/2 + 1));
+					}
+				});
 		
+		root.getChildren().add(invButton);
+		
+		leveltxt = new Text(10,30, "Floor: " + (current+1));
+		leveltxt.setFill(Color.WHITE);
+		leveltxt.setFont(Font.font(null, FontWeight.BOLD, 20));
+		
+		root.getChildren().add(leveltxt);
 	}
 	
 	private boolean checkWall(int row, int col, Player player)
@@ -135,6 +195,21 @@ public class MapScene extends Observable implements GameScene
 			return true;
 		
 		return false;
+	}
+	
+	private void randomEncounter()
+	{
+		Random rdm = new Random();
+		
+		if ( steps > MIN_STEPS && rdm.nextInt(100) < ENCOUNTER_CHANCE)
+		{
+			System.out.println("Battle Triggered");
+			
+			/*setChanged();
+			notifyObservers(new SceneSwitchInfo("COMBAT", current/2 +1));*/
+			
+			steps = 0;
+		}
 	}
 	
 	private void removeFloor()
@@ -196,8 +271,9 @@ public class MapScene extends Observable implements GameScene
 	
 	private void refreshButtons()
 	{
-		button.toFront();
-		button2.toFront();
+		invButton.toFront();
+		riskButton.toFront();
+		leveltxt.toFront();
 	}
 	
 	@Override
@@ -209,8 +285,6 @@ public class MapScene extends Observable implements GameScene
 	@Override
 	public Scene getScene() 
 	{
-		numVisited++;
-		//txt.textProperty().set("I'm The Map Scene!\n Visited " + numVisited + " times");
 		return scene;
 	}
 

@@ -8,7 +8,6 @@ import application.GameScene;
 import application.SceneSwitchInfo;
 import Character.AICharacter;
 import Character.GameCharacter;
-import Character.PlayerCharacter;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
