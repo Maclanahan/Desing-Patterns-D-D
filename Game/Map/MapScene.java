@@ -119,10 +119,10 @@ public class MapScene extends Observable implements GameScene
 						
 						if (floor[player.getRow()][player.getCol()] == 'B')
 						{
-							/*setChanged();
-							notifyObservers(new SceneSwitchInfo("COMBAT", boss_num));*/
+							setChanged();
+							notifyObservers(new SceneSwitchInfo("COMBAT", 50));
 							
-							System.out.println("You beat the game!!!");
+							//System.out.println("You beat the game!!!");
 						}
 						
 						randomEncounter();

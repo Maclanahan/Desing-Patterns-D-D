@@ -2,16 +2,19 @@ package Character;
 
 import java.util.Random;
 
+import application.AnimationManager;
+
 public class Defend implements Action
 {
 
 	private Random rand = new Random();
 	private int max = 5;
 	@Override
-	public void execute(GameCharacter $hero, GameCharacter $target) 
+	public void execute(GameCharacter $hero, GameCharacter $target, AnimationManager $animator) 
 	{
-		if($target != null)
-			System.out.println($hero.getName() + " defends." );
+		
+		$animator.DefendAnimation($hero.getImage());
+		System.out.println($hero.getName() + " defends." );
 		
 	}
 	
@@ -26,7 +29,7 @@ public class Defend implements Action
 	public int specialed(GameCharacter $hero) 
 	{
 		//System.out.println("In Defend");
-		return $hero.getStats().getDefense() / 2;
+		return $hero.getStats().getDefense() / 4;
 	}
 
 

@@ -23,7 +23,7 @@ public class StatsGenerator
 			{
 				int singleStat = Math.abs(rand.nextInt() % (poolOfTotalStats / 3 ));
 				
-				stats[i] = singleStat;
+				stats[i] = singleStat + $level + 1;
 				
 				poolOfTotalStats -= singleStat;
 			}

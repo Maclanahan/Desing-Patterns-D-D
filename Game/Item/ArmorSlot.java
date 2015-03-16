@@ -62,11 +62,11 @@ public class ArmorSlot implements Slot {
 		hand.item = item;
 		hand.empty = false;
 		empty = true;
-		holder.getStats().DefenceMod -= item.getDef();
-		holder.getStats().SpeedMod -= item.getSpd();
-		holder.getStats().StrengthMod -= item.getStr();
-		holder.getStats().IntelligenceMod -= item.getInt();
-		holder.getStats().HitPointsMod -= item.getHP();
+		holder.getStats().setDefense(-item.getDef());
+		holder.getStats().setSpeed(-item.getSpd());
+		holder.getStats().setStrength(-item.getStr());
+		holder.getStats().setIntelligence(-item.getInt());
+		holder.getStats().setHitPoints(-item.getHP());
 	}
 
 	@Override
@@ -74,11 +74,11 @@ public class ArmorSlot implements Slot {
 		panel.getChildren().add(item.getImage());
 		this.item = item;
 		empty = false;
-		holder.getStats().DefenceMod += item.getDef();
-		holder.getStats().SpeedMod += item.getSpd();
-		holder.getStats().StrengthMod += item.getStr();
-		holder.getStats().IntelligenceMod += item.getInt();
-		holder.getStats().HitPointsMod += item.getHP();
+		holder.getStats().setDefense(+item.getDef());
+		holder.getStats().setSpeed(+item.getSpd());
+		holder.getStats().setStrength(+item.getStr());
+		holder.getStats().setIntelligence(+item.getInt());
+		holder.getStats().setHitPoints(+item.getHP());
 		// TODO Auto-generated method stub
 
 	}
@@ -88,11 +88,11 @@ public class ArmorSlot implements Slot {
 		item = hand.item;
 		empty = false;
 		hand.empty = true;
-		holder.getStats().DefenceMod += item.getDef();
-		holder.getStats().SpeedMod += item.getSpd();
-		holder.getStats().StrengthMod += item.getStr();
-		holder.getStats().IntelligenceMod += item.getInt();
-		holder.getStats().HitPointsMod += item.getHP();
+		holder.getStats().setDefense(+item.getDef());
+		holder.getStats().setSpeed(+item.getSpd());
+		holder.getStats().setStrength(+item.getStr());
+		holder.getStats().setIntelligence(+item.getInt());
+		holder.getStats().setHitPoints(+item.getHP());
 		// TODO Auto-generated method stub
 
 	}

@@ -20,6 +20,10 @@ public class AIBehaviorGenerator
 		_behaviors = new ArrayList<AIBehavior>();
 		
 		_behaviors.add(new AIRandomAttackBehavior());
+		
+		_behaviors.add(new AIDefendBehavior());
+		
+		_behaviors.add(new AIRandomSpecialBehavior());
 	}
 	
 	public AIBehavior getRandomAIBehavior()

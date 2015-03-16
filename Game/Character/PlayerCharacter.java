@@ -2,6 +2,9 @@ package Character;
 
 import java.util.ArrayList;
 
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
+import application.AnimationManager;
 import Item.Item;
 
 public class PlayerCharacter implements GameCharacter
@@ -10,26 +13,51 @@ public class PlayerCharacter implements GameCharacter
 	public Stats _stats;
 	protected CharacterInventory _items;
 	protected Action _actionState;
+	protected AnimationManager _animator;
+	protected Action _noAction;
+	protected Action _attack;
+	protected Action _defend;
+	protected Action _special;
+	protected Rectangle _image;
 
-	public PlayerCharacter(String $name) {
+	public PlayerCharacter(String $name, AnimationManager $animator)
+	{
 		_name = $name;
-		_actionState = new NoAction();
+		_animator = $animator;
+		
+		initializeActions();
+		
 		setStats();
+		
 		_items = new CharacterInventory();
+		setUpImage();
 	}
 
-	public CharacterInventory getInv() {
+	private void initializeActions()
+	{
+		_noAction = new NoAction();
+		_attack = new Attack();
+		_defend = new Defend();
+		_special = new Special();
+		
+		_actionState = _noAction;
+	}
+	
+	public CharacterInventory getInv() 
+	{
 		return _items;
 	}
 
-	private void setStats() {
+	private void setStats() 
+	{
 		_stats = new Stats(new BaseStats(5,5,5,5,5));
 
 	}
 	
 	public void execute(GameCharacter $target)
 	{
-		_actionState.execute(this, $target);
+		if(getCurrentHealth() != 0)
+			_actionState.execute(this, $target, _animator);
 	}
 
 	public int attacked() {
@@ -41,19 +69,19 @@ public class PlayerCharacter implements GameCharacter
 	}
 
 	public void setActionToAttack() {
-		_actionState = new Attack();
+		_actionState = _attack;
 	}
 
 	public void setActionToDefend() {
-		_actionState = new Defend();
+		_actionState = _defend;
 	}
 
 	public void setActionToSpecial() {
-		_actionState = new Special();
+		_actionState = _special;
 	}
 
 	public void setActionToNoAction() {
-		_actionState = new NoAction();
+		_actionState =_noAction;
 	}
 
 	public void takeDamage(int $damage) {
@@ -90,5 +118,19 @@ public class PlayerCharacter implements GameCharacter
 	public void reset() 
 	{
 		_stats.reset();
+		setUpImage();
+	}
+	
+	public Rectangle getImage()
+	{
+		return _image;
+	}
+	private void setUpImage()
+	{
+		_image = new Rectangle(90, 90, Color.DODGERBLUE);
+		_image.arcHeightProperty().set(5);
+		_image.arcWidthProperty().set(5);
+		_image.strokeProperty().set(Color.BLACK);
+		_image.strokeWidthProperty().set(2);
 	}
 }

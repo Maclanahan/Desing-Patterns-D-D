@@ -2,6 +2,7 @@ package Combat;
 
 import java.awt.Point;
 
+import application.AnimationManager;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
@@ -20,16 +21,16 @@ public abstract class CharacterHolder
 	protected Selector _select;
 	protected boolean _isDead = false;
 	
-	public CharacterHolder(GameCharacter $char, Selector $select, int $x_position, int $y_position)
+	public CharacterHolder(GameCharacter $char, Selector $select, int $x_position, int $y_position, AnimationManager $animator)
 	{
 		_char = $char;
 		_select = $select;
 		basePosition = new Point($x_position, $y_position);
 		baseSize = new Point(90, 135);
 		
-		_healthbar = new Healthbar(basePosition, _char.getTotalHitPoints());
+		_healthbar = new Healthbar(basePosition, _char.getTotalHitPoints(), $animator);
 		
-		_sprite = accessorizeRectangle(90, 90, Color.DODGERBLUE);
+		_sprite = $char.getImage();//accessorizeRectangle(90, 90, Color.DODGERBLUE);
 		
 		placeObjects();
 	}

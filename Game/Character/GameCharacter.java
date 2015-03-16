@@ -1,5 +1,7 @@
 package Character;
 
+import javafx.scene.shape.Rectangle;
+
 public interface GameCharacter 
 {	
 	public void execute(GameCharacter $target);
@@ -31,4 +33,6 @@ public interface GameCharacter
 	public CharacterInventory getInv();
 
 	public void reset();
+	
+	public Rectangle getImage();
 }

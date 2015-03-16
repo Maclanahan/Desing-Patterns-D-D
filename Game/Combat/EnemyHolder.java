@@ -2,6 +2,7 @@ package Combat;
 
 import java.awt.Point;
 
+import application.AnimationManager;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
@@ -13,17 +14,17 @@ import Character.PlayerCharacter;
 public class EnemyHolder extends CharacterHolder
 {	
 	public EnemyHolder(GameCharacter gameCharacter, TurnStep $turn, Selector $select, int $x_position,
-			int $y_position) 
+			int $y_position, AnimationManager $animator) 
 	{
-		super(gameCharacter, $select, $x_position, $y_position);
+		super(gameCharacter, $select, $x_position, $y_position, $animator);
 	}
 
 	@Override
 	public Group getObjects() 
 	{
 		Group g = new Group();
-		g.getChildren().add(_healthbar.getObjects());
 		g.getChildren().add(_sprite);
+		g.getChildren().add(_healthbar.getObjects());
 		
 		return g;
 	}	

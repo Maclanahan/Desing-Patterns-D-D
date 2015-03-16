@@ -14,7 +14,7 @@ public class DungeonFactory
 		public Floor[] createDungeon()
 		{
 			int i, j, num, type;
-			Floor[] floors = new Floor[6];
+			Floor[] floors = new Floor[3];
 			Random rdm = new Random();
 		  
 			for ( num=0; num<floors.length; num++)

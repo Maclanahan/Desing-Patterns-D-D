@@ -3,6 +3,7 @@ package Combat;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import application.AnimationManager;
 import Character.GameCharacter;
 import Character.PlayerCharacter;
 import javafx.event.EventHandler;
@@ -18,14 +19,16 @@ public class TurnManager extends Observable
 	private ArrayList<GameCharacter> _heros;
 	private ArrayList<GameCharacter> _enemies;
 	private Rectangle button;
+	private AnimationManager _animator;
 	
 	public TurnManager(ArrayList<TurnStep> $turns, ArrayList<CharacterHolder> $chars, ArrayList<GameCharacter> $heros, 
-			ArrayList<GameCharacter>$enemies) 
+			ArrayList<GameCharacter>$enemies, AnimationManager $animator) 
 	{
 		_turns = $turns;
 		_chars = $chars;
 		_heros = $heros;
 		_enemies = $enemies;
+		_animator = $animator;
 		
 		setUpTurnButton();
 	}
@@ -47,23 +50,57 @@ public class TurnManager extends Observable
 	public void setTurnButtonSelectable()
 	{
 		button.setOnMousePressed(new EventHandler<MouseEvent>()
-				{
-					public void handle(MouseEvent me)
-					{
-						//System.out.println("Turn Button Pressed");
-						executeTurn();
-					}
-				});
+		{
+			public void handle(MouseEvent me)
+			{
+				//System.out.println("Turn Button Pressed");
+				executeTurn();
+			}
+		});
+		
+		button.fillProperty().set(Color.RED);
 		
 	}
 	
 	private void executeTurn() 
 	{
+		setTurnButtonUnSelectable();
+		
+		sortTurns();
+		
 		for(TurnStep ts : _turns)
 		{
-			ts.execute();	
+			ts.execute();
+			
+			for(CharacterHolder ch : _chars)
+			{
+				ch.update();
+			}
 		}
 		
+		_animator.playAnimations();
+		
+	}
+	
+	private void sortTurns() 
+	{
+		for(int i = _turns.size(); i >= 0; i--)
+			for(int j = 0; j < _turns.size() - 1; j++)
+		{
+			if(_turns.get(j).getSpeed() > _turns.get(j+1).getSpeed())
+				swap(j, j+1);
+		}
+	}
+
+	private void swap(int j, int i) 
+	{
+		TurnStep temp = _turns.get(j);
+		_turns.set(j, _turns.get(i));
+		_turns.set(i, temp);
+	}
+
+	public void afterAnimationExecute() 
+	{
 		for(TurnStep ts : _turns)
 		{
 			ts.reset();	
@@ -77,12 +114,14 @@ public class TurnManager extends Observable
 		this.setChanged();
 		this.notifyObservers("words");
 		
+		setTurnButtonSelectable();
 	}
 	
 	
 
 	public void setTurnButtonUnSelectable()
 	{
+		button.fillProperty().set(Color.GREY);
 		button.setOnMousePressed(null);
 	}
 
@@ -90,6 +129,8 @@ public class TurnManager extends Observable
 	{
 		return button;
 	}
+
+	
 
 	
 	

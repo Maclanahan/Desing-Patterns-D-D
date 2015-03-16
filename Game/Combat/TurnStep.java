@@ -10,7 +10,7 @@ public class TurnStep
 	private Action _act;
 	private GameCharacter _target;
 	private Selector _select;
-	private GameCharacter _empty = new PlayerCharacter("nothing");
+	private GameCharacter _empty = new PlayerCharacter("nothing", null);
 	
 	public TurnStep(Selector $select, GameCharacter $hero) 
 	{
@@ -64,5 +64,10 @@ public class TurnStep
 	public void update() 
 	{
 		
+	}
+	
+	public int getSpeed()
+	{
+		return _hero.getStats().getSpeed();		
 	}
 }

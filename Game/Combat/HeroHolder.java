@@ -2,6 +2,7 @@ package Combat;
 
 import java.awt.Point;
 
+import application.AnimationManager;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.input.MouseEvent;
@@ -14,18 +15,18 @@ public class HeroHolder extends CharacterHolder
 {
 	private CommandHolder _commands;
 	
-	public HeroHolder(GameCharacter $hero, TurnStep $turn, Selector $select, int $x_position, int $y_position)
+	public HeroHolder(GameCharacter $hero, TurnStep $turn, Selector $select, int $x_position, int $y_position, AnimationManager $animator)
 	{
-		super($hero, $select, $x_position, $y_position);		
+		super($hero, $select, $x_position, $y_position, $animator);		
 		_commands = new CommandHolder(_char, $turn, basePosition);
 	}
 	
 	public Group getObjects()
 	{
 		Group g = new Group();
-		g.getChildren().add(_healthbar.getObjects());
 		g.getChildren().add(_sprite);
 		g.getChildren().add(_commands.getObjects());
+		g.getChildren().add(_healthbar.getObjects());
 		
 		return g;
 	}

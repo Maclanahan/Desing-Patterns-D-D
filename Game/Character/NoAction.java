@@ -1,10 +1,12 @@
 package Character;
 
+import application.AnimationManager;
+
 public class NoAction implements Action
 {
 
 	@Override
-	public void execute(GameCharacter $hero, GameCharacter $target) 
+	public void execute(GameCharacter $hero, GameCharacter $target, AnimationManager $animator) 
 	{
 		
 		
