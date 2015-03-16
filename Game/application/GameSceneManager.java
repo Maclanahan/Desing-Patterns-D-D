@@ -19,8 +19,8 @@ public class GameSceneManager implements Observer
 	
 	private Stage _primaryStage;
 	
-	private MapScene _map;
-	private InventoryScene _inven;
+	private GameScene _map;
+	private GameScene _inven;
 	private AICharacterFactory EnemyFactory;
 	private AnimationManager _animator;
 	private boolean bossfight = false;
@@ -81,7 +81,7 @@ public class GameSceneManager implements Observer
 	private void setUpInventory() 
 	{
 		_inven = new InventoryScene(_characters);
-		_inven.addObserver(this);
+		((InventoryScene)_inven).addObserver(this);
 		
 		_inven.Start();
 	}
@@ -89,7 +89,7 @@ public class GameSceneManager implements Observer
 	private void setUpMap() 
 	{
 		_map = new MapScene();
-		_map.addObserver(this);
+		((MapScene)_map).addObserver(this);
 		
 		_map.Start();
 	}
@@ -113,7 +113,7 @@ public class GameSceneManager implements Observer
 				goToEndScene("Won!");
 			else
 			{
-				_inven.loot(_map.getDifficulty());
+				((InventoryScene)_inven).loot(((MapScene)_map).getDifficulty());
 				goToMap();
 			}
 		}
@@ -127,7 +127,7 @@ public class GameSceneManager implements Observer
 			goToInventory();
 		
 		else if(info.getSceneInfo().equalsIgnoreCase("TREASURE"))
-			_inven.loot(_map.getDifficulty());
+			((InventoryScene)_inven).loot(((MapScene)_map).getDifficulty());
 		
 		else
 			goToMap();
